@@ -57,7 +57,6 @@ def combine(left, right):
             right.pop(0)
 
     # Add the remaining parts of the array if non empty
-
     if len(left) > 0:
         result.extend(left)
     if len(right) > 0:
@@ -74,20 +73,3 @@ if __name__ == "__main__":
         print 'pass'
     else:
         print 'fail'
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
