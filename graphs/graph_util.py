@@ -1,3 +1,4 @@
+from enum import Enum
 
 
 class Node:
@@ -36,6 +37,16 @@ class Node:
         :rtype: list
         """
         return self._children
+
+
+class NodeState(Enum):
+    UNVISITED = 0
+    VISITING = 1
+    VISITED = 2
+
+
+class GraphCycleError(ValueError):
+    pass
 
 
 def generate_graph(adj_map, node_start_name):
