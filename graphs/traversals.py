@@ -16,37 +16,31 @@ def breadth_first_search(starting_graph_node):
     visited_map = dict()
 
     # Keep track of path
-    path = []
-
-    check_cycle(visited_map, starting_graph_node)
-    path.append(starting_graph_node.name)
+    current_path = []
 
     # Using deque here for the faster O(1) pop, queue for its LIFO properties.
-    stack = deque()
-    for child in starting_graph_node.children:
-        stack.append(child)
-
-    visited_map[starting_graph_node.name] = NodeState.VISITED
+    queue = deque()
+    queue.append(starting_graph_node)
 
     # Evaluate the children of the starting node.
-    while stack:
+    while queue:
 
         # Track the state of the children graph nodes.
+        node = queue.popleft()
+        process_node(visited_map, node)
 
-        node = stack.popleft()
-        check_cycle(visited_map, node)
-
-        path.append(node.name)
+        current_path.append(node.name)
 
         # Append the rest of the children to the stack.
         for child in node.children:
-            stack.append(child)
+            queue.append(child)
         visited_map[starting_graph_node.name] = NodeState.VISITED
 
-    return path
+    return current_path
 
 
-def check_cycle(visited_map, graph_node):
+def process_node(visited_map, graph_node):
+    # Check for cycles.
     visited_state = visited_map.get(graph_node.name)
     if visited_state is not None and visited_state == NodeState.VISITING:
         raise GraphCycleError()
@@ -74,6 +68,7 @@ if __name__ == "__main__":
     graph = generate_graph(sample_adj_map, node_start_name="A")
 
     path = breadth_first_search(graph)
+    print path
     expected = ["A", "B", "C", "D", "E", "X"]
     assert(path == expected)
 
@@ -97,4 +92,5 @@ if __name__ == "__main__":
     try:
         breadth_first_search(graph)
     except GraphCycleError as e:
+        print 'pass cycle test'
         pass
