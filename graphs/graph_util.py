@@ -1,7 +1,7 @@
 from enum import Enum
 
 
-class Node:
+class GraphNode:
 
     def __init__(self, name):
         """
@@ -19,7 +19,7 @@ class Node:
         Adds the specified node to be a child of the current node.
 
         :param node:
-        :type node: Node
+        :type node: GraphNode
 
         """
         self._children.append(node)
@@ -71,7 +71,7 @@ def generate_graph(adj_map, node_start_name):
     :type node_start_name: str
 
     :return: the beginning node pertaining to the specified adjacency map.
-    :rtype: Node
+    :rtype: GraphNode
 
     """
 
@@ -84,7 +84,7 @@ def generate_graph(adj_map, node_start_name):
         node_name_set.update(child_set)
 
     # Create all nodes as to adjust pointers between them to create the graph.
-    node_map = {node_name: Node(node_name) for node_name in node_name_set}
+    node_map = {node_name: GraphNode(node_name) for node_name in node_name_set}
 
     # Iterate through each node and set its children accordingly.
     for node_name, node_children_name_list in adj_map.iteritems():

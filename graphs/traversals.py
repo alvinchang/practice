@@ -1,15 +1,17 @@
 from collections import deque
 
-from graph_util import Node, generate_graph, NodeState, GraphCycleError
+from graph_util import GraphNode, generate_graph, NodeState, GraphCycleError
 
 
 def breadth_first_search(starting_graph_node):
     """
+    Performs breadth-first search
 
     :param starting_graph_node:
     :type: starting_graph_node: Node
 
-    :return:
+    :return: the path that bfs follows on the specified graph node head.
+    :rtype: list
     """
 
     # Keep track of visited nodes to avoid cycles.
@@ -31,9 +33,47 @@ def breadth_first_search(starting_graph_node):
 
         current_path.append(node.name)
 
-        # Append the rest of the children to the stack.
+        # Append the rest of the children to the queue.
         for child in node.children:
             queue.append(child)
+        visited_map[starting_graph_node.name] = NodeState.VISITED
+
+    return current_path
+
+
+def depth_first_search(starting_graph_node):
+    """
+    Performs depth-first-search
+
+    :param starting_graph_node:
+    :type: starting_graph_node: Node
+
+    :return: the path that bfs follows on the specified graph node head.
+    :rtype: list
+    """
+
+    # Keep track of visited nodes to avoid cycles.
+    visited_map = dict()
+
+    # Keep track of path
+    current_path = []
+
+    # Using stack here for its FIFO properties.
+    stack = list()
+    stack.append(starting_graph_node)
+
+    # Evaluate the children of the starting node.
+    while stack:
+
+        # Track the state of the children graph nodes.
+        node = stack.pop()
+        process_node(visited_map, node)
+
+        current_path.append(node.name)
+
+        # Append the rest of the children to the stack.
+        for child in node.children[::-1]:
+            stack.append(child)
         visited_map[starting_graph_node.name] = NodeState.VISITED
 
     return current_path
@@ -72,6 +112,12 @@ if __name__ == "__main__":
     expected = ["A", "B", "C", "D", "E", "X"]
     assert(path == expected)
 
+    path = depth_first_search(graph)
+    expected = ["A", "B", "C", "D", "X", "E"]
+    assert(path == expected)
+    print path
+
+
     """
     
     Sample graph with cycle
@@ -91,6 +137,12 @@ if __name__ == "__main__":
 
     try:
         breadth_first_search(graph)
+    except GraphCycleError as e:
+        print 'pass cycle test'
+        pass
+
+    try:
+        depth_first_search(graph)
     except GraphCycleError as e:
         print 'pass cycle test'
         pass
