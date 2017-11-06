@@ -8,7 +8,7 @@ def breadth_first_search(starting_graph_node):
     Performs breadth-first search
 
     :param starting_graph_node:
-    :type: starting_graph_node: Node
+    :type: starting_graph_node: GraphNode
 
     :return: the path that bfs follows on the specified graph node head.
     :rtype: list
@@ -46,7 +46,7 @@ def depth_first_search(starting_graph_node):
     Performs depth-first-search
 
     :param starting_graph_node:
-    :type: starting_graph_node: Node
+    :type: starting_graph_node: GraphNode
 
     :return: the path that bfs follows on the specified graph node head.
     :rtype: list
@@ -108,14 +108,12 @@ if __name__ == "__main__":
     graph = generate_graph(sample_adj_map, node_start_name="A")
 
     path = breadth_first_search(graph)
-    print path
     expected = ["A", "B", "C", "D", "E", "X"]
     assert(path == expected)
 
     path = depth_first_search(graph)
     expected = ["A", "B", "C", "D", "X", "E"]
     assert(path == expected)
-    print path
 
 
     """
