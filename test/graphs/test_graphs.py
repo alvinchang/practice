@@ -1,7 +1,7 @@
 import unittest
 
-from graphs.graph_util import generate_graph, GraphCycleError
 from graphs.traversals import breadth_first_search, depth_first_search
+from util.graph_util import generate_graph, GraphCycleError
 
 
 class TestGraph(unittest.TestCase):

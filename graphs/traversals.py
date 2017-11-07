@@ -1,6 +1,6 @@
 from collections import deque
 
-from graph_util import GraphNode, generate_graph, NodeState, GraphCycleError
+from util.graph_util import NodeState, GraphCycleError
 
 
 def breadth_first_search(starting_graph_node):
