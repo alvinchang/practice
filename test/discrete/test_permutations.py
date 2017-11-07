@@ -16,6 +16,5 @@ class TestPermutations(unittest.TestCase):
         empty_string = " "
         actual_perms = set(generate_permutations(empty_string))
         expected_perms = set("".join(_p) for _p in permutations(empty_string))
-        print actual_perms, expected_perms
         self.assertTrue(actual_perms == expected_perms)
 

@@ -26,12 +26,5 @@ def generate_permutations(input_string, char_index=0):
     return results
 
 
-if __name__ == "__main__":
-    print generate_permutations("abc")
-
-
-
-
-
 
 

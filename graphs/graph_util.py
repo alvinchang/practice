@@ -95,14 +95,3 @@ def generate_graph(adj_map, node_start_name):
 
     starting_node = node_map[node_start_name]
     return starting_node
-
-
-if __name__ == "__main__":
-
-    sample_adj_map = {
-        "A": ["B", "C"],
-        "C": ["D", "E"],
-        "D": ["X"]
-    }
-    graph = generate_graph(sample_adj_map, node_start_name="A")
-

@@ -65,14 +65,4 @@ def combine(left, right):
     return result
 
 
-if __name__ == "__main__":
-    random_list = [randint(0, 1000) for _ in xrange(0, 1000)]
-    sorted_list = merge_sort(random_list)
-    random_list.sort()
-    if random_list == sorted_list:
-        print 'pass'
-    else:
-        print 'fail'
-
-
 
