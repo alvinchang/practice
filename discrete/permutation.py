@@ -11,6 +11,9 @@ def generate_permutations(input_string, char_index=0):
     """
     results = []
 
+    if not input_string:
+        return input_string
+
     if char_index == len(input_string) - 1:
         results.append("".join(input_string))
 
