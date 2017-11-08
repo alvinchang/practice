@@ -8,6 +8,15 @@ class LinkedList:
         :type head: LinkedListNode
         """
         self._head = head
+        self._size = 1
+
+    def set_next(self, node):
+        """
+        :param node: the linked list node to be set as the next for this current node.
+        :type node: LinkedListNode
+        """
+        self._head.set_next(node)
+        self._size += 1
 
     def remove_node_with_name(self, name):
         """
@@ -19,10 +28,12 @@ class LinkedList:
         :return:
         """
 
-        # If the node to be removed is the head pointer, update the head to be its next ptr.
+        # If the node to be removed is the head pointer, update the head to be its next ptr, update size
         current_ptr = self._head
         if current_ptr.name == name:
             self._head = current_ptr.next_node
+            self._size -= 1
+            return
 
         # Otherwise, find the node to be removed and update ptrs accordingly.
         current_ptr = current_ptr.next_node
@@ -32,9 +43,11 @@ class LinkedList:
             if current_ptr.next_node is None:
                 return
 
-            # The next node is the node we want to remove.
+            # The next node is the node we want to remove, update size.
             if current_ptr.next_node.name == name:
                 current_ptr.next_node = current_ptr.next_node.next_node
+                self._size -= 1
+                return
 
             current_ptr = current_ptr.next_node
 
@@ -66,7 +79,7 @@ class LinkedList:
             arrow = "" if current_ptr.next_node is None else " ->"
             print current_ptr.name + arrow,
             current_ptr = current_ptr.next_node
-        print ""
+        print " (size: {})".format(self._size)
 
     @property
     def head(self):
@@ -74,6 +87,10 @@ class LinkedList:
         :rtype: LinkedListNode
         """
         return self._head
+
+    @property
+    def size(self):
+        return self._size if self._head is not None else 0
 
 
 class LinkedListNode:
@@ -109,13 +126,13 @@ def generate_linked_list(node_list):
     Ex. ['A', 'B', 'C'] => A -> B -> C
     :param node_list: a list of node names to construct a linked list with in order.
     :return: the header of the linked list.
-    :rtype: LinkedListNode
+    :rtype: LinkedList
     """
     if not node_list:
         return None
 
     head_node_name = node_list[0]
-    head_ptr = LinkedListNode(head_node_name)
+    head_ptr = LinkedList(LinkedListNode(head_node_name))
     current_ptr = head_ptr
     for _i in xrange(1, len(node_list)):
         node_name = node_list[_i]
@@ -138,7 +155,8 @@ if __name__ == "__main__":
     # linked_list.remove_node_with_name("A")
     # linked_list.to_string()
 
-    linked_list = LinkedList(generate_linked_list(["A"]))
+    linked_list = generate_linked_list(["A", "A"])
+    linked_list.to_string()
     linked_list.remove_node_with_name("A")
     linked_list.to_string()
 
