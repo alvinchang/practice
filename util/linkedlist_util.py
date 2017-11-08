@@ -1,5 +1,81 @@
 
 
+class LinkedList:
+
+    def __init__(self, head):
+        """
+        :param head:
+        :type head: LinkedListNode
+        """
+        self._head = head
+
+    def remove_node_with_name(self, name):
+        """
+        Removes a node with a given name.
+
+        :param name:
+        :type name: str
+
+        :return:
+        """
+
+        # If the node to be removed is the head pointer, update the head to be its next ptr.
+        current_ptr = self._head
+        if current_ptr.name == name:
+            self._head = current_ptr.next_node
+
+        # Otherwise, find the node to be removed and update ptrs accordingly.
+        current_ptr = current_ptr.next_node
+        while current_ptr is not None:
+
+            # Could not find anything to remove.
+            if current_ptr.next_node is None:
+                return
+
+            # The next node is the node we want to remove.
+            if current_ptr.next_node.name == name:
+                current_ptr.next_node = current_ptr.next_node.next_node
+
+            current_ptr = current_ptr.next_node
+
+    def append(self, name):
+        """
+        Appends a node to the end of this linked list.
+
+        :param name: the name of the node to be appended
+        :type name: str
+        """
+
+        current_ptr = self._head
+
+        # Reach the end of this linked list.
+        while current_ptr.next_node is not None:
+            current_ptr = current_ptr.next_node
+
+        current_ptr.set_next(LinkedListNode(name))
+
+    def to_string(self):
+        """
+        Prints a linked list
+        """
+
+        current_ptr = self._head
+
+        while current_ptr is not None:
+            # Don't include an arrow for the last node.
+            arrow = "" if current_ptr.next_node is None else " ->"
+            print current_ptr.name + arrow,
+            current_ptr = current_ptr.next_node
+        print ""
+
+    @property
+    def head(self):
+        """
+        :rtype: LinkedListNode
+        """
+        return self._head
+
+
 class LinkedListNode:
 
     def __init__(self, name):
@@ -50,25 +126,20 @@ def generate_linked_list(node_list):
     return head_ptr
 
 
-def print_linked_list(linked_list_node):
-    """
-    Prints a linked list
-
-    :param linked_list_node:
-    :type linked_list_node: LinkedListNode
-
-    """
-
-    curr_ptr = linked_list_node
-    nodes = []
-    while curr_ptr is not None:
-        nodes.append(curr_ptr.name)
-        curr_ptr = curr_ptr.next_node
-    print " -> ".join(nodes)
-
-
 if __name__ == "__main__":
-    head = generate_linked_list(["A", "B", "C"])
-    print_linked_list(head)
+    # linked_list = LinkedList(generate_linked_list(["A", "B", "C"]))
+    # linked_list.to_string()
+    # linked_list.append("D")
+    # linked_list.to_string()
+    #
+    # linked_list.remove_node_with_name("D")
+    # linked_list.to_string()
+    #
+    # linked_list.remove_node_with_name("A")
+    # linked_list.to_string()
+
+    linked_list = LinkedList(generate_linked_list(["A"]))
+    linked_list.remove_node_with_name("A")
+    linked_list.to_string()
 
 
