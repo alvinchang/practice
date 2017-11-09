@@ -1,3 +1,4 @@
+from util.node_util import Node
 
 
 class LinkedList:
@@ -54,7 +55,7 @@ class LinkedList:
 
             # The next node is the node we want to remove, update size.
             if current_ptr.name == name:
-                current_ptr.next_node = current_ptr.next_node.next_node
+                current_ptr.set_next_node(current_ptr.next_node.next_node)
                 self._size -= 1
                 return
 
@@ -109,14 +110,14 @@ class LinkedList:
         return self._size if self._head is not None else 0
 
 
-class LinkedListNode:
+class LinkedListNode(Node):
 
     def __init__(self, name):
         """
         :param name: the name of the node.
         :type name: str
         """
-        self._name = name
+        super(LinkedListNode, self).__init__(name)
         self._next_node = None
 
     def set_next_node(self, node):
@@ -129,10 +130,6 @@ class LinkedListNode:
     @property
     def next_node(self):
         return self._next_node
-
-    @property
-    def name(self):
-        return self._name
 
 
 def generate_linked_list(node_list):

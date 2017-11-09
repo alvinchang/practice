@@ -1,7 +1,9 @@
 from enum import Enum
 
+from util.node_util import Node
 
-class GraphNode:
+
+class GraphNode(Node):
 
     def __init__(self, name):
         """
@@ -11,6 +13,7 @@ class GraphNode:
         :type name: str
 
         """
+        super(GraphNode, self).__init__(name)
         self._name = name
         self._children = []
 
@@ -23,13 +26,6 @@ class GraphNode:
 
         """
         self._children.append(node)
-
-    @property
-    def name(self):
-        """
-        :rtype: str
-        """
-        return self._name
 
     @property
     def children(self):
