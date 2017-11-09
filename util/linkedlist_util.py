@@ -10,12 +10,21 @@ class LinkedList:
         self._head = head
         self._size = 1
 
-    def set_next(self, node):
+    def set_next_node(self, node):
         """
         :param node: the linked list node to be set as the next for this current node.
         :type node: LinkedListNode
         """
-        self._head.set_next(node)
+        self._head.set_next_node(node)
+        self._size += 1
+
+    def set_next_node_with_name(self, name):
+        """
+        :param name:
+        :type name: str
+        """
+        node = LinkedListNode(name)
+        self._head.set_next_node(node)
         self._size += 1
 
     def remove_node_with_name(self, name):
@@ -44,7 +53,7 @@ class LinkedList:
                 return
 
             # The next node is the node we want to remove, update size.
-            if current_ptr.next_node.name == name:
+            if current_ptr.name == name:
                 current_ptr.next_node = current_ptr.next_node.next_node
                 self._size -= 1
                 return
@@ -65,7 +74,7 @@ class LinkedList:
         while current_ptr.next_node is not None:
             current_ptr = current_ptr.next_node
 
-        current_ptr.set_next(LinkedListNode(name))
+        current_ptr.set_next_node(LinkedListNode(name))
 
     def to_string(self):
         """
@@ -89,6 +98,13 @@ class LinkedList:
         return self._head
 
     @property
+    def next_node(self):
+        """
+        :rtype: LinkedListNode or NoneType
+        """
+        return self._head.next_node
+
+    @property
     def size(self):
         return self._size if self._head is not None else 0
 
@@ -103,7 +119,7 @@ class LinkedListNode:
         self._name = name
         self._next_node = None
 
-    def set_next(self, node):
+    def set_next_node(self, node):
         """
         :param node: the linked list node to be set as the next for this current node.
         :type node: LinkedListNode
@@ -137,7 +153,7 @@ def generate_linked_list(node_list):
     for _i in xrange(1, len(node_list)):
         node_name = node_list[_i]
         node = LinkedListNode(node_name)
-        current_ptr.set_next(node)
+        current_ptr.set_next_node(node)
         current_ptr = node
 
     return head_ptr
