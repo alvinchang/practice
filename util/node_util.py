@@ -1,7 +1,7 @@
 from abc import ABCMeta
 
 
-class Node:
+class Node(object):
 
     # All nodes have an identifier as denoted by 'name'
 
