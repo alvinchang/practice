@@ -1,7 +1,7 @@
 from abc import ABCMeta, abstractmethod, abstractproperty
 
 
-class MapInterface:
+class MapInterface(object):
 
     __metaclass__ = ABCMeta
 
