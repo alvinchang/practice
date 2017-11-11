@@ -1,4 +1,3 @@
-from linkedlists.linkedlists import LinkedList
 from util.node_util import Node
 
 
@@ -24,6 +23,10 @@ class LinkedListNode(Node):
         return self._next_node
 
 
+class InvalidLinkedListIndexError(ValueError):
+    pass
+
+
 def generate_linked_list(node_list):
     """
     Generates a basic linked list.
@@ -46,23 +49,4 @@ def generate_linked_list(node_list):
         current_ptr = node
 
     return head_ptr
-
-
-if __name__ == "__main__":
-    # linked_list = LinkedList(generate_linked_list(["A", "B", "C"]))
-    # linked_list.to_string()
-    # linked_list.append("D")
-    # linked_list.to_string()
-    #
-    # linked_list.remove_node_with_name("D")
-    # linked_list.to_string()
-    #
-    # linked_list.remove_node_with_name("A")
-    # linked_list.to_string()
-
-    linked_list = generate_linked_list(["A", "A"])
-    linked_list.to_string()
-    linked_list.remove_node_with_name("A")
-    linked_list.to_string()
-
 

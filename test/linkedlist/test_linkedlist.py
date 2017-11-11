@@ -1,13 +1,14 @@
 import unittest
 
-from util.linkedlist_util import generate_linked_list
+from linkedlists.linkedlists import LinkedList
+from util.linkedlist_util import LinkedListNode
 
 
 class TestLinkedList(unittest.TestCase):
 
     def test_basic_linked_list(self):
         node_list = ["A", "B", "C"]
-        linked_list = generate_linked_list(node_list)
+        linked_list = TestLinkedList.generate_linked_list(node_list)
 
         node_index = 0
         current_ptr = linked_list.head
@@ -22,7 +23,7 @@ class TestLinkedList(unittest.TestCase):
 
     def test_basic_linked_list_append(self):
         node_list = ["A", "B", "C"]
-        linked_list = generate_linked_list(node_list)
+        linked_list = TestLinkedList.generate_linked_list(node_list)
 
         # Add "D" to the end
         linked_list.append("D")
@@ -40,7 +41,7 @@ class TestLinkedList(unittest.TestCase):
 
     def test_basic_linked_list_remove_from_head(self):
         node_list = ["A", "B", "C"]
-        linked_list = generate_linked_list(node_list)
+        linked_list = TestLinkedList.generate_linked_list(node_list)
 
         first_node_to_remove = node_list.pop(0)
 
@@ -60,7 +61,7 @@ class TestLinkedList(unittest.TestCase):
 
     def test_basic_linked_list_remove_from_mid(self):
         node_list = ["A", "B", "C"]
-        linked_list = generate_linked_list(node_list)
+        linked_list = TestLinkedList.generate_linked_list(node_list)
 
         middle_node_to_remove = node_list.pop(1)
 
@@ -84,7 +85,7 @@ class TestLinkedList(unittest.TestCase):
 
     def test_basic_linked_list_remove_from_end(self):
         node_list = ["A", "B", "C"]
-        linked_list = generate_linked_list(node_list)
+        linked_list = TestLinkedList.generate_linked_list(node_list)
 
         last_node_to_remove = node_list.pop()
 
@@ -106,12 +107,29 @@ class TestLinkedList(unittest.TestCase):
             current_ptr = current_ptr.next_node
             node_index += 1
 
+    @staticmethod
+    def generate_linked_list(node_list):
+        """
+           Generates a basic linked list.
 
+           Ex. ['A', 'B', 'C'] => A -> B -> C
+           :param node_list: a list of node names to construct a linked list with in order.
+           :return: the header of the linked list.
+           :rtype: linkedlists.linkedlists.LinkedList
+           """
+        if not node_list:
+            return None
 
+        head_node_name = node_list[0]
+        head_ptr = LinkedList(LinkedListNode(head_node_name))
+        current_ptr = head_ptr
+        for _i in xrange(1, len(node_list)):
+            node_name = node_list[_i]
+            node = LinkedListNode(node_name)
+            current_ptr.set_next_node(node)
+            current_ptr = node
 
-
-
-
+        return head_ptr
 
 
 

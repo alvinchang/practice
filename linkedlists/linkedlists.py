@@ -1,4 +1,4 @@
-from util.linkedlist_util import LinkedListNode
+from util.linkedlist_util import LinkedListNode, InvalidLinkedListIndexError
 
 
 class LinkedList:
@@ -16,15 +16,6 @@ class LinkedList:
         :param node: the linked list node to be set as the next for this current node.
         :type node: LinkedListNode
         """
-        self._head.set_next_node(node)
-        self._size += 1
-
-    def set_next_node_with_name(self, name):
-        """
-        :param name:
-        :type name: str
-        """
-        node = LinkedListNode(name)
         self._head.set_next_node(node)
         self._size += 1
 
@@ -76,6 +67,53 @@ class LinkedList:
             current_ptr = current_ptr.next_node
 
         current_ptr.set_next_node(LinkedListNode(name))
+
+    def insert_at_position(self, name, index):
+        """
+        Inserts a node at the given position of this linked list.
+
+        :param name: the name of the node to be inserted.
+        :type name: str
+
+        :param index: the position of the node to be inserted.
+        :type index: int
+
+        :raise: InvalidLinkedListIndexError
+        """
+
+        current_ptr = self._head
+
+        new_node = LinkedListNode(name)
+
+        # if inserting at index=0, update the head.
+        if index == 0:
+            new_node.set_next_node(current_ptr)
+            self._head = new_node
+
+        # Otherwise, find the location to insert.
+        while current_ptr.next_node is not None:
+
+            # Now we're at the index that we want to insert.
+            if index == 0:
+                break
+
+            index -= 1
+            current_ptr = current_ptr.next_node
+
+        # We could not find a valid position, we tried to go to the specified index but it was invalid.
+        if index > 0:
+            raise InvalidLinkedListIndexError()
+
+        # We should now have two cases -
+
+        # 1. Either the index we want to insert in is at the end of the linked list, in which case set the new tail.
+        if current_ptr.next_node is None:
+            current_ptr.set_next_node(new_node)
+        else:
+            # 2. The index we want to insert in is in the middle of the linked list
+            next_node = current_ptr.next_node
+            new_node.set_next_node(next_node)
+            current_ptr.set_next_node(new_node)
 
     def to_string(self):
         """
