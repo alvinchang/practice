@@ -19,11 +19,10 @@ class QueueInterface(object):
         raise NotImplementedError("Subclasses must implement the enqueue method.")
 
     @abstractmethod
-    def dequeue(self, item):
+    def dequeue(self):
         """
         Removes and returns item at the start of the queue.
 
-        :param item:
         :raises:EmptyQueueError
 
         """

@@ -17,7 +17,7 @@ class ListQueue(QueueInterface):
         # This is not so great as we have to copy and shift all elements over to the right.
         self._queue.insert(0, item)
 
-    def dequeue(self, item):
+    def dequeue(self):
         if not self._queue:
             raise EmptyQueueError()
         self._queue.pop()
