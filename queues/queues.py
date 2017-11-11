@@ -14,13 +14,14 @@ class ListQueue(QueueInterface):
         self._queue = list()
 
     def enqueue(self, item):
-        # This is not so great as we have to copy and shift all elements over to the right.
+        # This is not so great as we have to copy and shift all elements over to the right once we insert.
         self._queue.insert(0, item)
 
     def dequeue(self):
+        # This is not so great as we have to copy and shift all elements over to the right once we remove.
         if not self._queue:
             raise EmptyQueueError()
-        self._queue.pop()
+        return self._queue.pop(0)
 
     def peek(self):
         if not self._queue:
