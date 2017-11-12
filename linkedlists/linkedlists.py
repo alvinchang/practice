@@ -3,13 +3,13 @@ from util.linkedlist_util import LinkedListNode, InvalidLinkedListIndexError
 
 class LinkedList:
 
-    def __init__(self, head):
+    def __init__(self, head=None):
         """
         :param head:
         :type head: LinkedListNode
         """
         self._head = head
-        self._size = 1
+        self._size = 1 if head is not None else 0
 
     def set_next_node(self, node):
         """
@@ -99,9 +99,13 @@ class LinkedList:
             self._size += 1
             return
 
-        # Otherwise, find the location to insert.
+        # We traversed past the head node already.
+        index -= 1
         prev_ptr = self._head
-        while current_ptr.next_node is not None:
+        current_ptr = self._head.next_node
+
+        # Otherwise, find the location to insert.
+        while current_ptr is not None:
 
             # Now we're at the index that we want to insert.
             if index == 0:
@@ -112,8 +116,8 @@ class LinkedList:
             current_ptr = current_ptr.next_node
 
         # We could not find a valid position, we tried to go to the specified index but it was invalid.
-        # if index > 0:
-        #     raise InvalidLinkedListIndexError()
+        if index > 0:
+            raise InvalidLinkedListIndexError()
 
         # We should now have two cases -
 
