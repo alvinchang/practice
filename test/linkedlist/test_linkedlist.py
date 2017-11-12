@@ -89,8 +89,6 @@ class TestLinkedList(unittest.TestCase):
 
         last_node_to_remove = node_list.pop()
 
-        print node_list
-
         linked_list.remove_node_with_name(last_node_to_remove)
 
         linked_list.to_string()
@@ -107,6 +105,15 @@ class TestLinkedList(unittest.TestCase):
             current_ptr = current_ptr.next_node
             node_index += 1
 
+    def test_basic_linked_list_insert(self):
+        # TODO make some tests here.
+        node_list = ["A", "B", "C"]
+        linked_list = TestLinkedList.generate_linked_list(node_list)
+        linked_list.to_string()
+
+        linked_list.insert_at_position("D", 4)
+        linked_list.to_string()
+
     @staticmethod
     def generate_linked_list(node_list):
         """
@@ -121,19 +128,13 @@ class TestLinkedList(unittest.TestCase):
             return None
 
         head_node_name = node_list[0]
-        head_ptr = LinkedList(LinkedListNode(head_node_name))
-        current_ptr = head_ptr
+        linked_list = LinkedList(LinkedListNode(head_node_name))
         for _i in xrange(1, len(node_list)):
             node_name = node_list[_i]
             node = LinkedListNode(node_name)
-            current_ptr.set_next_node(node)
-            current_ptr = node
+            linked_list.set_next_node(node)
 
-        return head_ptr
-
-
-
-
+        return linked_list
 
 
 
