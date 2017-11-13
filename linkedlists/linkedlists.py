@@ -133,6 +133,50 @@ class LinkedList:
         # Update size.
         self._size += 1
 
+    def remove_at_position(self, index):
+        """
+        Removes a node at a given position.
+
+        :param index:
+        :type index: int
+
+        :return:
+        """
+
+        if index == 0:
+
+            if self._head is None:
+                raise InvalidLinkedListIndexError()
+
+            self._head = self.head.next_node
+            self._size -= 1
+            return
+
+        # We traversed past the head node already.
+        index -= 1
+        prev_ptr = self._head
+        current_ptr = self._head.next_node
+
+        # Otherwise, find the location to remove.
+        while current_ptr is not None:
+
+            # Now we're at the index that we want to remove.
+            if index == 0:
+                break
+
+            index -= 1
+            prev_ptr = current_ptr
+            current_ptr = current_ptr.next_node
+
+        # We could not find a valid position, we tried to go to the specified index but it was invalid.
+        if index > 0 or current_ptr is None:
+            raise InvalidLinkedListIndexError()
+
+        prev_ptr.set_next_node(current_ptr.next_node)
+
+        # Update size.
+        self._size -= 1
+
     def to_string(self):
         """
         Prints a linked list

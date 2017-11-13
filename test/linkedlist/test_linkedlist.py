@@ -192,6 +192,80 @@ class TestLinkedList(unittest.TestCase):
         except InvalidLinkedListIndexError:
             pass
 
+    def test_basic_linked_list_remove_from_beginning(self):
+        node_list = ["A", "B", "C"]
+        linked_list = TestLinkedList.generate_linked_list(node_list)
+
+        linked_list.remove_at_position(0)
+        node_list.pop(0)
+
+        linked_list.to_string()
+
+        node_index = 0
+        current_ptr = linked_list.head
+
+        while current_ptr.next_node is not None:
+            current_node_name = current_ptr.name
+
+            # Check that the current node has the correct name.
+            self.assertTrue(current_node_name == node_list[node_index])
+
+            current_ptr = current_ptr.next_node
+            node_index += 1
+
+    def test_basic_linked_list_remove_from_middle(self):
+        node_list = ["A", "B", "C"]
+        linked_list = TestLinkedList.generate_linked_list(node_list)
+
+        linked_list.remove_at_position(1)
+        node_list.pop(1)
+
+        linked_list.to_string()
+
+        node_index = 0
+        current_ptr = linked_list.head
+
+        while current_ptr.next_node is not None:
+            current_node_name = current_ptr.name
+
+            # Check that the current node has the correct name.
+            self.assertTrue(current_node_name == node_list[node_index])
+
+            current_ptr = current_ptr.next_node
+            node_index += 1
+
+    def test_basic_linked_list_remove_from_end(self):
+        node_list = ["A", "B", "C"]
+        linked_list = TestLinkedList.generate_linked_list(node_list)
+
+        linked_list.remove_at_position(2)
+        node_list.pop(2)
+
+        linked_list.to_string()
+
+        node_index = 0
+        current_ptr = linked_list.head
+
+        while current_ptr.next_node is not None:
+            current_node_name = current_ptr.name
+
+            # Check that the current node has the correct name.
+            self.assertTrue(current_node_name == node_list[node_index])
+
+            current_ptr = current_ptr.next_node
+            node_index += 1
+
+    def test_basic_linked_list_remove_at_invalid(self):
+        node_list = ["A", "B", "C"]
+        linked_list = TestLinkedList.generate_linked_list(node_list)
+
+        try:
+            linked_list.remove_at_position(3)
+            self.assertTrue(False)
+        except InvalidLinkedListIndexError:
+            pass
+
+
     @staticmethod
     def generate_linked_list(node_list):
         """
