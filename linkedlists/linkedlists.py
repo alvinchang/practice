@@ -57,6 +57,24 @@ class LinkedList:
 
             current_ptr = current_ptr.next_node
 
+    def add_to_front(self, name):
+        """
+        Adds a node to the front.
+
+        :param name: the name of the node to add to the beginning
+        """
+        self._insert_at_position(name, 0)
+
+    def pop_from_end(self):
+        """
+        Pops the node from the end
+
+        :raises:  InvalidLinkedListIndexError
+        """
+        if self._size == 0:
+            raise InvalidLinkedListIndexError()
+        return self._pop_at_position(self._size - 1)
+
     def append(self, name):
         """
         Appends a node to the end of this linked list.
@@ -65,17 +83,22 @@ class LinkedList:
         :type name: str
         """
 
-        current_ptr = self._head
+        new_node = LinkedListNode(name)
 
-        # Reach the end of this linked list.
-        while current_ptr.next_node is not None:
-            current_ptr = current_ptr.next_node
+        if self._head is None:
+            self._head = new_node
+        else:
+            current_ptr = self._head
 
-        current_ptr.set_next_node(LinkedListNode(name))
+            # Reach the end of this linked list.
+            while current_ptr.next_node is not None:
+                current_ptr = current_ptr.next_node
+
+            current_ptr.set_next_node(new_node)
 
         self._size += 1
 
-    def insert_at_position(self, name, index):
+    def _insert_at_position(self, name, index):
         """
         Inserts a node at the given position of this linked list.
 
@@ -94,8 +117,12 @@ class LinkedList:
 
         # if inserting at index=0, update the head.
         if index == 0:
-            new_node.set_next_node(current_ptr)
-            self._head = new_node
+
+            if self._head is None:
+                self._head = new_node
+            else:
+                new_node.set_next_node(current_ptr)
+                self._head = new_node
             self._size += 1
             return
 
@@ -133,24 +160,24 @@ class LinkedList:
         # Update size.
         self._size += 1
 
-    def remove_at_position(self, index):
+    def _pop_at_position(self, index):
         """
         Removes a node at a given position.
 
         :param index:
         :type index: int
 
-        :return:
+        :raise: InvalidLinkedListIndexError
         """
 
         if index == 0:
 
             if self._head is None:
                 raise InvalidLinkedListIndexError()
-
+            head_data = self._head.name
             self._head = self.head.next_node
             self._size -= 1
-            return
+            return head_data
 
         # We traversed past the head node already.
         index -= 1
@@ -172,10 +199,14 @@ class LinkedList:
         if index > 0 or current_ptr is None:
             raise InvalidLinkedListIndexError()
 
+        current_data = current_ptr.name
+
         prev_ptr.set_next_node(current_ptr.next_node)
 
         # Update size.
         self._size -= 1
+
+        return current_data
 
     def to_string(self):
         """

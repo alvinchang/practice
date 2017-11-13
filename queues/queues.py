@@ -1,3 +1,5 @@
+from linkedlists.linkedlists import LinkedList
+from util.linkedlist_util import InvalidLinkedListIndexError
 from util.queue_util import QueueInterface, EmptyQueueError
 
 
@@ -32,3 +34,28 @@ class ListQueue(QueueInterface):
         return len(self._queue)
 
 
+class LinkedListQueue(QueueInterface):
+    """
+    An implementation of a queue that uses a linked list, which would have O(1) add to front, and O(1) remove from end
+    to simulate a FIFO queue with better performance than a python list.
+    """
+
+    def __init__(self):
+        self._queue = LinkedList()
+
+    def enqueue(self, item):
+        self._queue.add_to_front(item)
+
+    def dequeue(self):
+        try:
+            return self._queue.pop_from_end()
+        except InvalidLinkedListIndexError:
+            raise EmptyQueueError()
+
+    def peek(self):
+        if self._queue.head is None:
+            raise EmptyQueueError()
+        return self._queue.head.name
+
+    def size(self):
+        return self._queue.size

@@ -39,7 +39,7 @@ class TestLinkedList(unittest.TestCase):
             current_ptr = current_ptr.next_node
             node_index += 1
 
-    def test_basic_linked_list_remove_from_head(self):
+    def test_basic_linked_list_remove_node_from_head(self):
         node_list = ["A", "B", "C"]
         linked_list = TestLinkedList.generate_linked_list(node_list)
 
@@ -59,7 +59,7 @@ class TestLinkedList(unittest.TestCase):
             current_ptr = current_ptr.next_node
             node_index += 1
 
-    def test_basic_linked_list_remove_from_mid(self):
+    def test_basic_linked_list_remove_node_from_mid(self):
         node_list = ["A", "B", "C"]
         linked_list = TestLinkedList.generate_linked_list(node_list)
 
@@ -83,7 +83,7 @@ class TestLinkedList(unittest.TestCase):
             current_ptr = current_ptr.next_node
             node_index += 1
 
-    def test_basic_linked_list_remove_from_end(self):
+    def test_basic_linked_list_remove_node_from_end(self):
         node_list = ["A", "B", "C"]
         linked_list = TestLinkedList.generate_linked_list(node_list)
 
@@ -110,7 +110,7 @@ class TestLinkedList(unittest.TestCase):
         linked_list = TestLinkedList.generate_linked_list(node_list)
 
         node_list.insert(0, "D")
-        linked_list.insert_at_position("D", 0)
+        linked_list._insert_at_position("D", 0)
 
         node_index = 0
         current_ptr = linked_list.head
@@ -129,7 +129,7 @@ class TestLinkedList(unittest.TestCase):
         linked_list = TestLinkedList.generate_linked_list(node_list)
 
         node_list.insert(1, "D")
-        linked_list.insert_at_position("D", 1)
+        linked_list._insert_at_position("D", 1)
 
         node_index = 0
         current_ptr = linked_list.head
@@ -148,7 +148,7 @@ class TestLinkedList(unittest.TestCase):
         linked_list = TestLinkedList.generate_linked_list(node_list)
 
         node_list.insert(2, "D")
-        linked_list.insert_at_position("D", 2)
+        linked_list._insert_at_position("D", 2)
 
         node_index = 0
         current_ptr = linked_list.head
@@ -166,7 +166,7 @@ class TestLinkedList(unittest.TestCase):
         node_list = ["A", "B", "C"]
         linked_list = TestLinkedList.generate_linked_list(node_list)
 
-        linked_list.insert_at_position("D", 3)
+        linked_list._insert_at_position("D", 3)
 
         linked_list.to_string()
 
@@ -187,7 +187,7 @@ class TestLinkedList(unittest.TestCase):
         linked_list = TestLinkedList.generate_linked_list(node_list)
 
         try:
-            linked_list.insert_at_position("D", 4)
+            linked_list._insert_at_position("D", 4)
             self.assertTrue(False)
         except InvalidLinkedListIndexError:
             pass
@@ -196,7 +196,7 @@ class TestLinkedList(unittest.TestCase):
         node_list = ["A", "B", "C"]
         linked_list = TestLinkedList.generate_linked_list(node_list)
 
-        linked_list.remove_at_position(0)
+        linked_list._pop_at_position(0)
         node_list.pop(0)
 
         linked_list.to_string()
@@ -217,7 +217,7 @@ class TestLinkedList(unittest.TestCase):
         node_list = ["A", "B", "C"]
         linked_list = TestLinkedList.generate_linked_list(node_list)
 
-        linked_list.remove_at_position(1)
+        linked_list._pop_at_position(1)
         node_list.pop(1)
 
         linked_list.to_string()
@@ -238,7 +238,7 @@ class TestLinkedList(unittest.TestCase):
         node_list = ["A", "B", "C"]
         linked_list = TestLinkedList.generate_linked_list(node_list)
 
-        linked_list.remove_at_position(2)
+        linked_list._pop_at_position(2)
         node_list.pop(2)
 
         linked_list.to_string()
@@ -260,11 +260,10 @@ class TestLinkedList(unittest.TestCase):
         linked_list = TestLinkedList.generate_linked_list(node_list)
 
         try:
-            linked_list.remove_at_position(3)
+            linked_list._pop_at_position(3)
             self.assertTrue(False)
         except InvalidLinkedListIndexError:
             pass
-
 
     @staticmethod
     def generate_linked_list(node_list):
