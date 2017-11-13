@@ -1,6 +1,6 @@
 import unittest
 
-from linkedlists.linkedlists import LinkedList
+from linkedlists.linkedlists import SinglyLinkedList
 from util.linkedlist_util import LinkedListNode, InvalidLinkedListIndexError
 
 
@@ -273,13 +273,13 @@ class TestLinkedList(unittest.TestCase):
            Ex. ['A', 'B', 'C'] => A -> B -> C
            :param node_list: a list of node names to construct a linked list with in order.
            :return: the header of the linked list.
-           :rtype: linkedlists.linkedlists.LinkedList
+           :rtype: linkedlists.linkedlists.SinglyLinkedList
            """
         if not node_list:
             return None
 
         head_node_name = node_list[0]
-        linked_list = LinkedList(LinkedListNode(head_node_name))
+        linked_list = SinglyLinkedList(LinkedListNode(head_node_name))
         for _i in xrange(1, len(node_list)):
             node_name = node_list[_i]
             node = LinkedListNode(node_name)

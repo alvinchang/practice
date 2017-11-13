@@ -1,7 +1,7 @@
 from util.linkedlist_util import LinkedListNode, InvalidLinkedListIndexError
 
 
-class LinkedList:
+class SinglyLinkedList:
 
     def __init__(self, head=None):
         """

@@ -1,4 +1,4 @@
-from linkedlists.linkedlists import LinkedList
+from linkedlists.linkedlists import SinglyLinkedList
 from util.linkedlist_util import InvalidLinkedListIndexError
 from util.queue_util import QueueInterface, EmptyQueueError
 
@@ -41,7 +41,7 @@ class LinkedListQueue(QueueInterface):
     """
 
     def __init__(self):
-        self._queue = LinkedList()
+        self._queue = SinglyLinkedList()
 
     def enqueue(self, item):
         self._queue.add_to_front(item)
