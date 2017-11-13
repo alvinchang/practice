@@ -114,6 +114,26 @@ class BinaryTreeNode(Node):
         return self._right
 
 
+class SuffixTree:
+
+    def __init__(self):
+        pass
+
+
+class NaryTreeNode(Node):
+
+    def __init__(self, name):
+        super(NaryTreeNode, self).__init__(name)
+        self._children = []
+
+    @property
+    def children(self):
+        return self._children
+
+
+
+
+
 
 
 
