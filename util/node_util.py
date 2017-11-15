@@ -10,7 +10,7 @@ class Node(object):
     def __init__(self, name):
         """
         :param name: expected int or str identifier for these purposes.
-        :type name: int or str
+        :type name: Any
         """
         self._name = name
 
