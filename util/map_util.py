@@ -86,7 +86,7 @@ class Map(MapInterface):
         return self._chain_map
 
 
-class KVPair(Node):
+class KVPair:
     """
     This class encapsulates what it means to be a key-value pair, namely just has a key and a value identifier, to be
     used in map implementations.
@@ -95,8 +95,9 @@ class KVPair(Node):
     def __init__(self, key, value):
         self._key = key
         self._value = value
-        kv_pair = (key, value)
-        super(KVPair, self).__init__(kv_pair)
+
+    def set_value(self, value):
+        self._value = value
 
     @property
     def key(self):
@@ -105,4 +106,5 @@ class KVPair(Node):
     @property
     def value(self):
         return self._value
+
 

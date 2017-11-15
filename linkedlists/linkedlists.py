@@ -1,4 +1,4 @@
-from util.linkedlist_util import LinkedListNode, InvalidLinkedListIndexError
+from util.linkedlist_util import LinkedListNode, InvalidLinkedListIndexError, LinkedListValueMissingError
 
 
 class SinglyLinkedList:
@@ -36,7 +36,11 @@ class SinglyLinkedList:
 
         # If the node to be removed is the head pointer, update the head to be its next ptr, update size
         current_ptr = self._head
-        if current_ptr.name == name:
+
+        # Can't contain the value if there is no head pointer.
+        if current_ptr is None:
+            raise LinkedListValueMissingError()
+        if current_ptr.identifier == name:
             self._head = current_ptr.next_node
             self._size -= 1
             return
@@ -50,12 +54,15 @@ class SinglyLinkedList:
                 return
 
             # The next node is the node we want to remove, update size.
-            if current_ptr.name == name:
+            if current_ptr.identifier == name:
                 current_ptr.set_next_node(current_ptr.next_node.next_node)
                 self._size -= 1
                 return
 
             current_ptr = current_ptr.next_node
+
+        # Could not find a value, return a value missing error.
+        raise LinkedListValueMissingError()
 
     def add_to_front(self, name):
         """

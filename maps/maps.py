@@ -1,4 +1,5 @@
 from linkedlists.linkedlists import SinglyLinkedList
+from util.linkedlist_util import LinkedListValueMissingError
 from util.map_util import Map, ValueMissingError, KVPair
 
 
@@ -53,13 +54,45 @@ class LinkedListMap(Map):
         super(LinkedListMap, self).__init__(SinglyLinkedList, size)
 
     def get(self, key):
-        pass
+
+        key_hash = self.hash(key)
+        linked_list = self.chain_map[key_hash]
+
+        # Iterate through the linked list, and return the value if you can find it, otherwise return None.
+        curr_ptr = linked_list.head
+        while curr_ptr is not None:
+
+            if curr_ptr.identifier == key:
+                return curr_ptr.name.value
+
+            curr_ptr = curr_ptr.next_node
+
+        return None
 
     def put(self, key, value):
-        pass
+        key_hash = self.hash(key)
+        linked_list = self.chain_map[key_hash]
+
+        # Iterate through the linked list, and update the value if you can find it, otherwise insert it.
+        curr_ptr = linked_list.head
+        while curr_ptr is not None:
+
+            if curr_ptr.name.key == key:
+                # Update value if key is present.
+                curr_ptr.name.set_value(value)
+                return
+
+            curr_ptr = curr_ptr.next_node
+        kv_pair = KVPair(key, value)
+        linked_list.append(kv_pair)
 
     def remove(self, key):
-        pass
+        key_hash = self.hash(key)
+        linked_list = self.chain_map[key_hash]
+        try:
+            linked_list.remove_node_with_name(key)
+        except LinkedListValueMissingError:
+            raise ValueMissingError()
 
 
 
