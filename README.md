@@ -1,7 +1,7 @@
-# practice
+# Practice Repository
 
-## Note this is just for my own personal practice.
-### This is just my own repository to practice some programming questions, and is not reflective of production-ready code.
+### Note this is just for my own personal practice.
+### This is just my own repository to practice some programming questions, and is not indicative of production-ready code.
 
 # TODO:
 
