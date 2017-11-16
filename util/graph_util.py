@@ -5,16 +5,16 @@ from util.node_util import Node
 
 class GraphNode(Node):
 
-    def __init__(self, name):
+    def __init__(self, identifier):
         """
         Creates a node with the given name.
 
-        :param name:
-        :type name: str
+        :param identifier:
+        :type identifier: str
 
         """
-        super(GraphNode, self).__init__(name)
-        self._name = name
+        super(GraphNode, self).__init__(identifier)
+        self._name = identifier
         self._children = []
 
     def add_child(self, node):

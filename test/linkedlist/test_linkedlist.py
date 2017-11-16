@@ -13,7 +13,7 @@ class TestLinkedList(unittest.TestCase):
         node_index = 0
         current_ptr = linked_list.head
         while current_ptr.next_node is not None:
-            current_node_name = current_ptr.name
+            current_node_name = current_ptr.identifier
 
             # Check that the current node has the correct name.
             self.assertTrue(current_node_name == node_list[node_index])
@@ -31,7 +31,7 @@ class TestLinkedList(unittest.TestCase):
         current_ptr = linked_list.head
         node_list.extend("D")
         while current_ptr.next_node is not None:
-            current_node_name = current_ptr.name
+            current_node_name = current_ptr.identifier
 
             # Check that the current node has the correct name.
             self.assertTrue(current_node_name == node_list[node_index])
@@ -51,7 +51,7 @@ class TestLinkedList(unittest.TestCase):
         current_ptr = linked_list.head
 
         while current_ptr.next_node is not None:
-            current_node_name = current_ptr.name
+            current_node_name = current_ptr.identifier
 
             # Check that the current node has the correct name.
             self.assertTrue(current_node_name == node_list[node_index])
@@ -75,7 +75,7 @@ class TestLinkedList(unittest.TestCase):
         current_ptr = linked_list.head
 
         while current_ptr.next_node is not None:
-            current_node_name = current_ptr.name
+            current_node_name = current_ptr.identifier
 
             # Check that the current node has the correct name.
             self.assertTrue(current_node_name == node_list[node_index])
@@ -97,7 +97,7 @@ class TestLinkedList(unittest.TestCase):
         current_ptr = linked_list.head
 
         while current_ptr.next_node is not None:
-            current_node_name = current_ptr.name
+            current_node_name = current_ptr.identifier
 
             # Check that the current node has the correct name.
             self.assertTrue(current_node_name == node_list[node_index])
@@ -116,7 +116,7 @@ class TestLinkedList(unittest.TestCase):
         current_ptr = linked_list.head
 
         while current_ptr.next_node is not None:
-            current_node_name = current_ptr.name
+            current_node_name = current_ptr.identifier
 
             # Check that the current node has the correct name.
             self.assertTrue(current_node_name == node_list[node_index])
@@ -135,7 +135,7 @@ class TestLinkedList(unittest.TestCase):
         current_ptr = linked_list.head
 
         while current_ptr.next_node is not None:
-            current_node_name = current_ptr.name
+            current_node_name = current_ptr.identifier
 
             # Check that the current node has the correct name.
             self.assertTrue(current_node_name == node_list[node_index])
@@ -154,7 +154,7 @@ class TestLinkedList(unittest.TestCase):
         current_ptr = linked_list.head
 
         while current_ptr.next_node is not None:
-            current_node_name = current_ptr.name
+            current_node_name = current_ptr.identifier
 
             # Check that the current node has the correct name.
             self.assertTrue(current_node_name == node_list[node_index])
@@ -174,7 +174,7 @@ class TestLinkedList(unittest.TestCase):
         current_ptr = linked_list.head
 
         while current_ptr.next_node is not None:
-            current_node_name = current_ptr.name
+            current_node_name = current_ptr.identifier
 
             # Check that the current node has the correct name.
             self.assertTrue(current_node_name == node_list[node_index])
@@ -205,7 +205,7 @@ class TestLinkedList(unittest.TestCase):
         current_ptr = linked_list.head
 
         while current_ptr.next_node is not None:
-            current_node_name = current_ptr.name
+            current_node_name = current_ptr.identifier
 
             # Check that the current node has the correct name.
             self.assertTrue(current_node_name == node_list[node_index])
@@ -226,7 +226,7 @@ class TestLinkedList(unittest.TestCase):
         current_ptr = linked_list.head
 
         while current_ptr.next_node is not None:
-            current_node_name = current_ptr.name
+            current_node_name = current_ptr.identifier
 
             # Check that the current node has the correct name.
             self.assertTrue(current_node_name == node_list[node_index])
@@ -247,7 +247,7 @@ class TestLinkedList(unittest.TestCase):
         current_ptr = linked_list.head
 
         while current_ptr.next_node is not None:
-            current_node_name = current_ptr.name
+            current_node_name = current_ptr.identifier
 
             # Check that the current node has the correct name.
             self.assertTrue(current_node_name == node_list[node_index])

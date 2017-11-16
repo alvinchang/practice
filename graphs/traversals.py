@@ -31,12 +31,12 @@ def breadth_first_search(starting_graph_node):
         node = queue.popleft()
         process_node(visited_map, node)
 
-        current_path.append(node.name)
+        current_path.append(node.identifier)
 
         # Append the rest of the children to the queue.
         for child in node.children:
             queue.append(child)
-        visited_map[starting_graph_node.name] = NodeState.VISITED
+        visited_map[starting_graph_node.identifier] = NodeState.VISITED
 
     return current_path
 
@@ -69,19 +69,19 @@ def depth_first_search(starting_graph_node):
         node = stack.pop()
         process_node(visited_map, node)
 
-        current_path.append(node.name)
+        current_path.append(node.identifier)
 
         # Append the rest of the children to the stack.
         for child in node.children[::-1]:
             stack.append(child)
-        visited_map[starting_graph_node.name] = NodeState.VISITED
+        visited_map[starting_graph_node.identifier] = NodeState.VISITED
 
     return current_path
 
 
 def process_node(visited_map, graph_node):
     # Check for cycles.
-    visited_state = visited_map.get(graph_node.name)
+    visited_state = visited_map.get(graph_node.identifier)
     if visited_state is not None and visited_state == NodeState.VISITING:
         raise GraphCycleError()
-    visited_map[graph_node.name] = NodeState.VISITING
+    visited_map[graph_node.identifier] = NodeState.VISITING

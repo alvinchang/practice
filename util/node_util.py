@@ -7,12 +7,12 @@ class Node(object):
 
     __metaclass__ = ABCMeta
 
-    def __init__(self, name):
+    def __init__(self, identifier):
         """
-        :param name: expected int or str identifier for these purposes.
-        :type name: Any
+        :param identifier: expected int or str identifier for these purposes.
+        :type identifier: Any
         """
-        self._name = name
+        self._identifier = identifier
 
     def __eq__(self, other):
         if isinstance(self, type(other)):
@@ -29,5 +29,5 @@ class Node(object):
         return tuple(sorted(self.__dict__.items()))
 
     @property
-    def name(self):
-        return self._name
+    def identifier(self):
+        return self._identifier

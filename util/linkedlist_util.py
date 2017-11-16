@@ -4,12 +4,12 @@ from util.node_util import Node
 
 class LinkedListNode(Node):
 
-    def __init__(self, name):
+    def __init__(self, identifier):
         """
-        :param name: the name of the node.
-        :type name: str or KVPair
+        :param identifier: the name of the node.
+        :type identifier: str or KVPair
         """
-        super(LinkedListNode, self).__init__(name)
+        super(LinkedListNode, self).__init__(identifier)
         self._next_node = None
 
     def set_next_node(self, node):
@@ -27,10 +27,10 @@ class LinkedListNode(Node):
     def identifier(self):
         # Custom functionality to pass through the key for a KV Pair to be used in comparisons, initially was expecting
         # only to use single dimensional identifiers like a str or int.
-        if isinstance(self._name, KVPair):
-            return self._name.key
+        if isinstance(self._identifier, KVPair):
+            return self._identifier.key
         else:
-            return super(LinkedListNode, self).name
+            return super(LinkedListNode, self).identifier
 
 
 class InvalidLinkedListIndexError(ValueError):

@@ -63,7 +63,7 @@ class LinkedListMap(Map):
         while curr_ptr is not None:
 
             if curr_ptr.identifier == key:
-                return curr_ptr.name.value
+                return curr_ptr.identifier.value
 
             curr_ptr = curr_ptr.next_node
 
@@ -77,9 +77,9 @@ class LinkedListMap(Map):
         curr_ptr = linked_list.head
         while curr_ptr is not None:
 
-            if curr_ptr.name.key == key:
+            if curr_ptr.identifier.key == key:
                 # Update value if key is present.
-                curr_ptr.name.set_value(value)
+                curr_ptr.identifier.set_value(value)
                 return
 
             curr_ptr = curr_ptr.next_node

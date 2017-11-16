@@ -181,7 +181,7 @@ class SinglyLinkedList:
 
             if self._head is None:
                 raise InvalidLinkedListIndexError()
-            head_data = self._head.name
+            head_data = self._head.identifier
             self._head = self.head.next_node
             self._size -= 1
             return head_data
@@ -206,7 +206,7 @@ class SinglyLinkedList:
         if index > 0 or current_ptr is None:
             raise InvalidLinkedListIndexError()
 
-        current_data = current_ptr.name
+        current_data = current_ptr.identifier
 
         prev_ptr.set_next_node(current_ptr.next_node)
 
@@ -225,7 +225,7 @@ class SinglyLinkedList:
         while current_ptr is not None:
             # Don't include an arrow for the last node.
             arrow = "" if current_ptr.next_node is None else " ->"
-            print current_ptr.name + arrow,
+            print current_ptr.identifier + arrow,
             current_ptr = current_ptr.next_node
         print " (size: {})".format(self._size)
 

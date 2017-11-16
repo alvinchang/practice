@@ -55,7 +55,7 @@ class LinkedListQueue(QueueInterface):
     def peek(self):
         if self._queue.head is None:
             raise EmptyQueueError()
-        return self._queue.head.name
+        return self._queue.head.identifier
 
     def size(self):
         return self._queue.size

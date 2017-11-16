@@ -39,13 +39,13 @@ class BinaryTree:
     def in_order_traversal_pather(node, path):
         if node is not None:
             BinaryTree.in_order_traversal_pather(node.left, path)
-            path.append(node.name)
+            path.append(node.identifier)
             BinaryTree.in_order_traversal_pather(node.right, path)
 
     @staticmethod
     def pre_order_traversal_pather(node, path):
         if node is not None:
-            path.append(node.name)
+            path.append(node.identifier)
             BinaryTree.in_order_traversal_pather(node.left, path)
             BinaryTree.in_order_traversal_pather(node.right, path)
 
@@ -54,19 +54,19 @@ class BinaryTree:
         if node is not None:
             BinaryTree.in_order_traversal_pather(node.left, path)
             BinaryTree.in_order_traversal_pather(node.right, path)
-            path.append(node.name)
+            path.append(node.identifier)
 
     @staticmethod
     def in_order_traversal_printer(node, level=0):
         if node is not None:
             BinaryTree.in_order_traversal_printer(node.left, level=level + 1)
-            print "\t" * level + node.name
+            print "\t" * level + node.identifier
             BinaryTree.in_order_traversal_printer(node.right, level=level + 1)
 
     @staticmethod
     def pre_order_traversal_printer(node, level=0):
         if node is not None:
-            print "\t" * level + node.name
+            print "\t" * level + node.identifier
             BinaryTree.pre_order_traversal_printer(node.left, level=level + 1)
             BinaryTree.pre_order_traversal_printer(node.right, level=level + 1)
 
@@ -75,13 +75,13 @@ class BinaryTree:
         if node is not None:
             BinaryTree.pre_order_traversal_printer(node.left, level=level + 1)
             BinaryTree.pre_order_traversal_printer(node.right, level=level + 1)
-            print "\t" * level + node.name
+            print "\t" * level + node.identifier
 
 
 class BinaryTreeNode(Node):
 
-    def __init__(self, name):
-        super(BinaryTreeNode, self).__init__(name)
+    def __init__(self, identifier):
+        super(BinaryTreeNode, self).__init__(identifier)
         self._left = None
         self._right = None
 
@@ -122,8 +122,8 @@ class SuffixTree:
 
 class NaryTreeNode(Node):
 
-    def __init__(self, name):
-        super(NaryTreeNode, self).__init__(name)
+    def __init__(self, identifier):
+        super(NaryTreeNode, self).__init__(identifier)
         self._children = []
 
     @property
