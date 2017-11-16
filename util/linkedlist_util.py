@@ -23,6 +23,12 @@ class LinkedListNode(Node):
     def next_node(self):
         return self._next_node
 
+    def set_value(self, value):
+        if isinstance(self._identifier, KVPair):
+            self._identifier.set_value(value)
+        else:
+            raise NotImplementedError
+
     @property
     def identifier(self):
         # Custom functionality to pass through the key for a KV Pair to be used in comparisons, initially was expecting
@@ -30,7 +36,16 @@ class LinkedListNode(Node):
         if isinstance(self._identifier, KVPair):
             return self._identifier.key
         else:
-            return super(LinkedListNode, self).identifier
+            return self._identifier
+
+    @property
+    def value(self):
+        # Custom functionality to pass through the value for a KV Pair to be used in comparisons, initially was
+        # expecting only to use single dimensional identifiers like a str or int.
+        if isinstance(self._identifier, KVPair):
+            return self._identifier.value
+        else:
+            return self._identifier
 
 
 class InvalidLinkedListIndexError(ValueError):
