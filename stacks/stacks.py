@@ -21,6 +21,6 @@ class ListStack(StackInterface):
 
     def peek(self):
         if not self._stack:
-            raise EmptyStackError()
+            raise EmptyStackError
         return self._stack[-1]
 

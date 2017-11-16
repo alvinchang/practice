@@ -72,15 +72,15 @@ class SinglyLinkedList:
         """
         self._insert_at_position(name, 0)
 
-    def pop_from_end(self):
+    def pop_from_beginning(self):
         """
-        Pops the node from the end
+        Pops the node from the beginning
 
         :raises:  InvalidLinkedListIndexError
         """
         if self._size == 0:
             raise InvalidLinkedListIndexError()
-        return self._pop_at_position(self._size - 1)
+        return self._pop_at_position(0)
 
     def append(self, name):
         """
