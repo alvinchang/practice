@@ -1,7 +1,5 @@
 from abc import ABCMeta, abstractmethod
 
-from util.node_util import Node
-
 
 class MapInterface(object):
 
@@ -84,27 +82,5 @@ class Map(MapInterface):
     @property
     def chain_map(self):
         return self._chain_map
-
-
-class KVPair:
-    """
-    This class encapsulates what it means to be a key-value pair, namely just has a key and a value identifier, to be
-    used in map implementations.
-    """
-
-    def __init__(self, key, value):
-        self._key = key
-        self._value = value
-
-    def set_value(self, value):
-        self._value = value
-
-    @property
-    def key(self):
-        return self._key
-
-    @property
-    def value(self):
-        return self._value
 
 

@@ -1,6 +1,7 @@
 from linkedlists.linkedlists import SinglyLinkedList
 from util.linkedlist_util import LinkedListValueMissingError
-from util.map_util import Map, ValueMissingError, KVPair
+from util.map_util import Map, ValueMissingError
+from util.node_util import KVPair
 
 
 class ListMap(Map):

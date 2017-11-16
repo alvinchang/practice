@@ -1,5 +1,4 @@
-from util.map_util import KVPair
-from util.node_util import Node
+from util.node_util import Node, KVPair
 
 
 class LinkedListNode(Node):
