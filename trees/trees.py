@@ -1,3 +1,7 @@
+from graphs.traversals import process_node
+from util.tree_util import BinaryTreeNode
+
+
 class BinaryTree:
 
     def __init__(self, starting_node):
@@ -75,7 +79,12 @@ class BinaryTree:
             print "\t" * level + node.identifier
 
 
+
+
+
+
 class SuffixTree:
 
     def __init__(self):
         pass
+
