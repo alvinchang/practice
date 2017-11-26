@@ -1,6 +1,6 @@
 
 
-def generate_permutations(input_string, char_index=0):
+def generate_permutations_list(input_string, char_index=0):
     """
     Generates permutations of a string by performing inversions left to right.
 
@@ -22,7 +22,7 @@ def generate_permutations(input_string, char_index=0):
         input_string_list = list(input_string)
         input_string_list[_i], input_string_list[char_index] = input_string_list[char_index], input_string_list[_i]
 
-        results.extend(generate_permutations(input_string_list, char_index=char_index+1))
+        results.extend(generate_permutations_list(input_string_list, char_index=char_index + 1))
     return results
 
 
