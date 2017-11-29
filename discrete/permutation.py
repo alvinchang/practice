@@ -26,5 +26,9 @@ def generate_permutations_string(input_string, char_index=0):
     return results
 
 
+def generate_permutations_list():
+    pass
+
+
 
 

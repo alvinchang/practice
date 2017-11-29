@@ -36,6 +36,13 @@ class BinaryTree:
         BinaryTree.post_order_traversal_pather(self._head, path)
         return path
 
+    @property
+    def head(self):
+        """
+        :rtype: BinaryTreeNode
+        """
+        return self._head
+
     @staticmethod
     def in_order_traversal_pather(node, path):
         if node is not None:
@@ -77,6 +84,45 @@ class BinaryTree:
             BinaryTree.pre_order_traversal_printer(node.left, level=level + 1)
             BinaryTree.pre_order_traversal_printer(node.right, level=level + 1)
             print "\t" * level + node.identifier
+
+    def is_equal(self, other_tree):
+        """
+        :param other_tree:
+        :type other_tree: BinaryTree
+        :return:
+        """
+        return is_equal(self.head, other_tree.head)
+
+
+def is_equal(binary_tree_node1, binary_tree_node2):
+    """
+    Checks whether or not both binary trees denoted by their starting node have equal values for each node and the
+    same structure.
+
+    :param binary_tree_node1:
+    :type binary_tree_node1: BinaryTreeNode
+
+    :param binary_tree_node2:
+    :type: binary_tree1_node: BinaryTreeNode
+    """
+
+    # If both nodes are empty, the subtree is equal.
+    if binary_tree_node1 is None and binary_tree_node2 is None:
+        return True
+    # If both nodes are not empty, check the value at the node, and recursively check left and right subtrees
+    elif binary_tree_node1 is not None and binary_tree_node2 is not None:
+        return binary_tree_node1.identifier == binary_tree_node2.identifier and \
+               is_equal(binary_tree_node1.left, binary_tree_node2.left) and \
+               is_equal(binary_tree_node1.right, binary_tree_node2.right)
+    # In order to reach this case, one of them is not None while the other is, which means this subtree is not equal
+    else:
+        return False
+
+
+class BinaryTreeReaderWriter:
+
+    pass
+
 
 
 

@@ -24,6 +24,18 @@ class TestBinaryTree(unittest.TestCase):
         expected_path = ["A", "D", "B", "E", "C", "F"]
         self.assertTrue(path == expected_path)
 
+    def test_basic_binary_tree_equality(self):
+        binary_tree = TestBinaryTree.create_basic_binary_tree()
+        binary_tree_same = TestBinaryTree.create_basic_binary_tree()
+        self.assertTrue(binary_tree.is_equal(binary_tree_same))
+        self.assertTrue(binary_tree_same.is_equal(binary_tree))
+
+    def test_basic_binary_tree_not_equal(self):
+        binary_tree = TestBinaryTree.create_basic_binary_tree()
+        binary_tree_2 = TestBinaryTree.create_basic_binary_tree_2()
+        self.assertFalse(binary_tree.is_equal(binary_tree_2))
+        self.assertFalse(binary_tree_2.is_equal(binary_tree))
+
     @staticmethod
     def create_basic_binary_tree():
         """
@@ -41,6 +53,26 @@ class TestBinaryTree(unittest.TestCase):
             "A": ["B", "C"],
             "B": ["D", "E"],
             "C": [None, "F"]
+        }
+        return TestBinaryTree.generate_binary_tree(sample_adj_map, "A")
+
+    @staticmethod
+    def create_basic_binary_tree_2():
+        """
+            Sample adj map
+
+                   A
+                  / \
+                 B   C
+                / \  /
+               D   E F
+
+            """
+
+        sample_adj_map = {
+            "A": ["B", "C"],
+            "B": ["D", "E"],
+            "C": ["F", None]
         }
         return TestBinaryTree.generate_binary_tree(sample_adj_map, "A")
 
