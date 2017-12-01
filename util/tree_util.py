@@ -3,6 +3,8 @@ from util.node_util import Node
 
 class BinaryTreeNode(Node):
 
+    NONE_ID = "#"
+
     def __init__(self, identifier):
         super(BinaryTreeNode, self).__init__(identifier)
         self._left = None

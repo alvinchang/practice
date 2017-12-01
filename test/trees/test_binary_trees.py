@@ -25,6 +25,12 @@ class TestBinaryTree(unittest.TestCase):
         expected_path = ["A", "D", "B", "E", "C", "F"]
         self.assertTrue(path == expected_path)
 
+    def test_basic_binary_tree_levelorder_path(self):
+        binary_tree = TestBinaryTree.create_basic_binary_tree()
+        path = binary_tree.level_order_traversal_path()
+        expected_path = ['A', 'B', 'C', 'D', 'E', 'F']
+        self.assertEqual(path, expected_path)
+
     def test_basic_binary_tree_equality(self):
         binary_tree = TestBinaryTree.create_basic_binary_tree()
         binary_tree_same = TestBinaryTree.create_basic_binary_tree()
@@ -56,17 +62,6 @@ class TestBinaryTree(unittest.TestCase):
         expected_tree = TestBinaryTree.create_basic_binary_search_tree_ints()
         print expected_tree.in_order_traversal_path()
         self.assertTrue(binary_tree.is_equal(expected_tree))
-
-    def test_basic_binary_tree_de_and_serialization(self):
-        binary_tree = TestBinaryTree.create_basic_binary_tree()
-        in_order, pre_order = BinaryTreeReaderWriter.serialize_1(binary_tree)
-        print "in_order={}".format(in_order)
-        print "pre_order={}".format(pre_order)
-        new_binary_tree = BinaryTreeReaderWriter.deserialize_1(in_order, pre_order)
-        print "in_order={}".format(new_binary_tree.in_order_traversal_path())
-        print "pre_order={}".format(new_binary_tree.pre_order_traversal_path())
-        #self.assertTrue(binary_tree.is_equal(new_binary_tree))
-        #self.assertTrue(new_binary_tree.is_equal(binary_tree))
 
     @staticmethod
     def create_basic_binary_tree_one_node():
@@ -184,3 +179,23 @@ class TestBinaryTree(unittest.TestCase):
             parent_node.set_right(right_node)
 
         return BinaryTree(node_map[starting_node_name])
+
+
+class TestBinaryTreesReaderWriter(unittest.TestCase):
+
+    def test_basic_binary_tree_de_and_serialization_with_level_order_traversal(self):
+        binary_tree = TestBinaryTree.create_basic_binary_tree()
+        level_order_path = binary_tree.level_order_traversal_path()
+        print level_order_path
+
+
+    def test_basic_binary_tree_de_and_serialization_1(self):
+        binary_tree = TestBinaryTree.create_basic_binary_tree()
+        in_order, pre_order = BinaryTreeReaderWriter.serialize_1(binary_tree)
+        print "in_order={}".format(in_order)
+        print "pre_order={}".format(pre_order)
+        new_binary_tree = BinaryTreeReaderWriter.deserialize_1(in_order, pre_order)
+        print "in_order={}".format(new_binary_tree.in_order_traversal_path())
+        print "pre_order={}".format(new_binary_tree.pre_order_traversal_path())
+        #self.assertTrue(binary_tree.is_equal(new_binary_tree))
+        #self.assertTrue(new_binary_tree.is_equal(binary_tree))

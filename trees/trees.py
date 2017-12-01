@@ -1,4 +1,8 @@
+import Queue
+from collections import deque
+
 from graphs.traversals import process_node
+from queues.queues import LinkedListQueue
 from util.tree_util import BinaryTreeNode
 
 
@@ -50,6 +54,19 @@ class BinaryTree:
 
     def print_pre_order_traversal(self):
         BinaryTree.pre_order_traversal_printer(self._head)
+
+    def level_order_traversal_path(self, append_nones=False):
+        path = []
+        queue = LinkedListQueue()
+        queue.enqueue(self.head)
+        while queue.size() > 0:
+            node = queue.dequeue()
+            path.append(node.identifier)
+            if node.left is not None or append_nones:
+                queue.enqueue(node.left)
+            if node.right is not None or append_nones:
+                queue.enqueue(node.right)
+        return path
 
     def in_order_traversal_path(self):
         path = []
@@ -214,6 +231,16 @@ class BinaryTreeReaderWriter:
         root.set_right(BinaryTreeReaderWriter.deserialize_1_helper(pre_order_path=pre_order_path,
                                                                    in_order_path=in_order_path[idx + 1::]))
         return root
+
+    @staticmethod
+    def serialize_level_order(binary_tree):
+        """
+        :param binary_tree:
+        :type binary_tree: BinaryTree
+        """
+
+        level_order_path = binary_tree.level_order_traversal_path(append_nones=True)
+        print level_order_path
 
 
 class SuffixTree:
