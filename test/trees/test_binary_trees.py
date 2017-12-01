@@ -36,6 +36,14 @@ class TestBinaryTree(unittest.TestCase):
         self.assertFalse(binary_tree.is_equal(binary_tree_2))
         self.assertFalse(binary_tree_2.is_equal(binary_tree))
 
+    def test_basic_binary_tree_height_one_node(self):
+        binary_tree = TestBinaryTree.create_basic_binary_tree_one_node()
+        self.assertEqual(binary_tree.height(), 1)
+
+    def test_basic_binary_tree_height(self):
+        binary_tree = TestBinaryTree.create_basic_binary_tree()
+        self.assertEqual(binary_tree.height(), 3)
+
     def test_basic_binary_tree_de_and_serialization(self):
         binary_tree = TestBinaryTree.create_basic_binary_tree()
         in_order, pre_order = BinaryTreeReaderWriter.serialize_1(binary_tree)
@@ -47,8 +55,19 @@ class TestBinaryTree(unittest.TestCase):
         #self.assertTrue(binary_tree.is_equal(new_binary_tree))
         #self.assertTrue(new_binary_tree.is_equal(binary_tree))
 
+    @staticmethod
+    def create_basic_binary_tree_one_node():
+        """
+            Sample adj map
 
+                   A
 
+            """
+
+        sample_adj_map = {
+            "A": [None, None]
+        }
+        return TestBinaryTree.generate_binary_tree(sample_adj_map, "A")
 
     @staticmethod
     def create_basic_binary_tree():

@@ -98,6 +98,9 @@ class BinaryTree:
         """
         return is_equal(self.head, other_tree.head)
 
+    def height(self):
+        return height(self.head)
+
 
 def is_equal(binary_tree_node1, binary_tree_node2):
     """
@@ -122,6 +125,19 @@ def is_equal(binary_tree_node1, binary_tree_node2):
     # In order to reach this case, one of them is not None while the other is, which means this subtree is not equal
     else:
         return False
+
+
+def height(binary_tree_node):
+    """
+    Determines the height of a binary tree (max number of levels of nodes)
+
+    :param binary_tree_node:
+    :type: binary_tree_node: BinaryTreeNode
+    """
+    if binary_tree_node is None:
+        return 0
+    else:
+        return max(height(binary_tree_node.left), height(binary_tree_node.right)) + 1
 
 
 class BinaryTreeReaderWriter:
