@@ -12,6 +12,36 @@ class BinaryTree:
         """
         self._head = starting_node
 
+    @classmethod
+    def create_bst(cls, id_list):
+        """
+        Creates a binary search tree with minimal height given a list of identifiers.
+
+        Note these identifiers must be comparable.
+
+        :param id_list:
+        :return:
+        """
+        id_list.sort()
+        return BinaryTree(cls._create_bst(id_list, 0, len(id_list)-1))
+
+    @classmethod
+    def _create_bst(cls, id_list, lower, upper):
+
+        if lower > upper:
+            return None
+
+        midpoint_idx = (lower + upper) / 2
+        midpoint_val = id_list[midpoint_idx]
+
+        node = BinaryTreeNode(midpoint_val)
+        left = cls._create_bst(id_list, lower=lower, upper=midpoint_idx-1)
+        right = cls._create_bst(id_list, lower=midpoint_idx+1, upper=upper)
+        node.set_left(left)
+        node.set_right(right)
+
+        return node
+
     def print_in_order_traversal(self):
         BinaryTree.in_order_traversal_printer(self._head)
 
@@ -60,7 +90,6 @@ class BinaryTree:
         # For appending a null terminator
         if append_nones and node is None:
             path.append(node)
-
 
     @staticmethod
     def post_order_traversal_pather(node, path):

@@ -1,4 +1,5 @@
 import unittest
+from random import shuffle
 
 from util.tree_util import BinaryTreeNode
 from trees.trees import BinaryTree, BinaryTreeReaderWriter
@@ -44,6 +45,18 @@ class TestBinaryTree(unittest.TestCase):
         binary_tree = TestBinaryTree.create_basic_binary_tree()
         self.assertEqual(binary_tree.height(), 3)
 
+    def test_basic_binary_tree_creation(self):
+        int_list = range(1, 8)
+        shuffle(int_list)
+        binary_tree = BinaryTree.create_bst(int_list)
+        actual_path = binary_tree.in_order_traversal_path()
+        expected_path = sorted(int_list)
+        self.assertEquals(actual_path, expected_path)
+
+        expected_tree = TestBinaryTree.create_basic_binary_search_tree_ints()
+        print expected_tree.in_order_traversal_path()
+        self.assertTrue(binary_tree.is_equal(expected_tree))
+
     def test_basic_binary_tree_de_and_serialization(self):
         binary_tree = TestBinaryTree.create_basic_binary_tree()
         in_order, pre_order = BinaryTreeReaderWriter.serialize_1(binary_tree)
@@ -68,6 +81,26 @@ class TestBinaryTree(unittest.TestCase):
             "A": [None, None]
         }
         return TestBinaryTree.generate_binary_tree(sample_adj_map, "A")
+
+    @staticmethod
+    def create_basic_binary_search_tree_ints():
+        """
+            Sample adj map
+
+                   4
+                  / \
+                 2   6
+                / \  /\
+               1  3 5  7
+
+            """
+
+        sample_adj_map = {
+            2: [1, 3],
+            4: [2, 6],
+            6: [5, 7],
+        }
+        return TestBinaryTree.generate_binary_tree(sample_adj_map, 4)
 
     @staticmethod
     def create_basic_binary_tree():
@@ -130,12 +163,12 @@ class TestBinaryTree(unittest.TestCase):
         :type adj_map: dict
 
         :param starting_node_name: the node that the binary tree starts with
-        :type starting_node_name: str
+        :type starting_node_name: str or int
 
         :return:
         """
 
-        node_name_set = set(starting_node_name)
+        node_name_set = set(starting_node_name) if isinstance(starting_node_name, str) else set([starting_node_name])
         for (left_child_name, right_child_name) in adj_map.itervalues():
             node_children_set = {left_child_name, right_child_name}
             node_name_set.update(node_children_set)
