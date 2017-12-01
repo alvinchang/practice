@@ -1,7 +1,7 @@
 import unittest
 
 from util.tree_util import BinaryTreeNode
-from trees.trees import BinaryTree
+from trees.trees import BinaryTree, BinaryTreeReaderWriter
 
 
 class TestBinaryTree(unittest.TestCase):
@@ -35,6 +35,20 @@ class TestBinaryTree(unittest.TestCase):
         binary_tree_2 = TestBinaryTree.create_basic_binary_tree_2()
         self.assertFalse(binary_tree.is_equal(binary_tree_2))
         self.assertFalse(binary_tree_2.is_equal(binary_tree))
+
+    def test_basic_binary_tree_de_and_serialization(self):
+        binary_tree = TestBinaryTree.create_basic_binary_tree()
+        in_order, pre_order = BinaryTreeReaderWriter.serialize_1(binary_tree)
+        print "in_order={}".format(in_order)
+        print "pre_order={}".format(pre_order)
+        new_binary_tree = BinaryTreeReaderWriter.deserialize_1(in_order, pre_order)
+        print "in_order={}".format(new_binary_tree.in_order_traversal_path())
+        print "pre_order={}".format(new_binary_tree.pre_order_traversal_path())
+        #self.assertTrue(binary_tree.is_equal(new_binary_tree))
+        #self.assertTrue(new_binary_tree.is_equal(binary_tree))
+
+
+
 
     @staticmethod
     def create_basic_binary_tree():

@@ -51,11 +51,16 @@ class BinaryTree:
             BinaryTree.in_order_traversal_pather(node.right, path)
 
     @staticmethod
-    def pre_order_traversal_pather(node, path):
+    def pre_order_traversal_pather(node, path, append_nones=False):
         if node is not None:
             path.append(node.identifier)
             BinaryTree.in_order_traversal_pather(node.left, path)
             BinaryTree.in_order_traversal_pather(node.right, path)
+
+        # For appending a null terminator
+        if append_nones and node is None:
+            path.append(node)
+
 
     @staticmethod
     def post_order_traversal_pather(node, path):
@@ -121,12 +126,49 @@ def is_equal(binary_tree_node1, binary_tree_node2):
 
 class BinaryTreeReaderWriter:
 
-    pass
+    @staticmethod
+    def serialize_1(binary_tree):
+        """
+        Serializes a binary tree using its in order and pre order path traversals.
 
+        :param binary_tree:
+        :type binary_tree: BinaryTree
+        :return:
+        """
+        in_order_path = BinaryTree.in_order_traversal_path(binary_tree)
+        pre_order_path = BinaryTree.pre_order_traversal_path(binary_tree)
+        return in_order_path, pre_order_path
 
+    @staticmethod
+    def deserialize_1(in_order_path, pre_order_path):
+        """
+        :param in_order_path:
+        :param pre_order_path:
+        :return:
+        """
+        return BinaryTree(BinaryTreeReaderWriter.deserialize_1_helper(in_order_path, pre_order_path))
 
+    @staticmethod
+    def deserialize_1_helper(in_order_path, pre_order_path):
+        """
+        :param in_order_path:
+        :param pre_order_path:
+        :return:
+        """
+        # Base Case
+        if not in_order_path or not pre_order_path:
+            return None
 
-
+        root_name = pre_order_path[0]
+        root = BinaryTreeNode(root_name)
+        idx = in_order_path.index(root_name)
+        # Remove the root from further calls, as root should be returned in the current call.
+        pre_order_path.pop(0)
+        root.set_left(BinaryTreeReaderWriter.deserialize_1_helper(pre_order_path=pre_order_path,
+                                                                  in_order_path=in_order_path[0:idx]))
+        root.set_right(BinaryTreeReaderWriter.deserialize_1_helper(pre_order_path=pre_order_path,
+                                                                   in_order_path=in_order_path[idx + 1::]))
+        return root
 
 
 class SuffixTree:
