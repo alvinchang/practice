@@ -21,6 +21,24 @@ class TestLinkedList(unittest.TestCase):
             current_ptr = current_ptr.next_node
             node_index += 1
 
+    def test_basic_linked_list_reverse(self):
+        node_list = ["A", "B", "C"]
+        linked_list = TestLinkedList.generate_linked_list(node_list)
+        linked_list.reverse()
+        linked_list.to_string()
+        node_index = 0
+        current_ptr = linked_list.head
+
+        node_list.reverse()
+        while current_ptr.next_node is not None:
+            current_node_name = current_ptr.identifier
+
+            # Check that the current node has the correct name.
+            self.assertTrue(current_node_name == node_list[node_index])
+
+            current_ptr = current_ptr.next_node
+            node_index += 1
+
     def test_basic_linked_list_append(self):
         node_list = ["A", "B", "C"]
         linked_list = TestLinkedList.generate_linked_list(node_list)

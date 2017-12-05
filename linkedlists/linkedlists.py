@@ -215,6 +215,16 @@ class SinglyLinkedList:
 
         return current_data
 
+    def reverse(self):
+        current = self._head
+        prev = None
+        while current is not None:
+            next_ptr = current.next_node
+            current.set_next_node(prev)
+            prev = current
+            current = next_ptr
+        self._head = prev
+
     def to_string(self):
         """
         Prints a linked list
