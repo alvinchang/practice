@@ -1,6 +1,8 @@
 import unittest
+from random import shuffle
 
-from linkedlists.linkedlists import SinglyLinkedList
+from linkedlists.linkedlists import SinglyLinkedList, get_middle_of_linked_list, split_linked_list, \
+    merge_sort_linked_list
 from util.linkedlist_util import LinkedListNode, InvalidLinkedListIndexError
 
 
@@ -282,6 +284,57 @@ class TestLinkedList(unittest.TestCase):
             self.assertTrue(False)
         except InvalidLinkedListIndexError:
             pass
+
+    def test_basic_linked_list_get_middle_odd(self):
+        node_list = ["A", "B", "C"]
+        linked_list = TestLinkedList.generate_linked_list(node_list)
+        mid = get_middle_of_linked_list(linked_list)
+        self.assertTrue(mid.identifier, "B")
+
+    def test_basic_linked_list_get_middle_even(self):
+        node_list = ["A", "B", "C", "D"]
+        linked_list = TestLinkedList.generate_linked_list(node_list)
+        mid = get_middle_of_linked_list(linked_list)
+        self.assertTrue(mid.identifier, "C")
+
+    def test_basic_linked_list_get_middle_one(self):
+        node_list = ["A"]
+        linked_list = TestLinkedList.generate_linked_list(node_list)
+        mid = get_middle_of_linked_list(linked_list)
+        self.assertTrue(mid.identifier, "A")
+
+    def test_basic_linked_list_get_middle_two(self):
+        node_list = ["A", "B"]
+        linked_list = TestLinkedList.generate_linked_list(node_list)
+        mid = get_middle_of_linked_list(linked_list)
+        self.assertTrue(mid.identifier, "B")
+
+    def test_basic_linked_list_split_middle_odd(self):
+        node_list = ["A", "B", "C"]
+        linked_list = TestLinkedList.generate_linked_list(node_list)
+        left, right = split_linked_list(linked_list)
+        left.to_string()
+        right.to_string()
+
+    def test_basic_linked_list_split_one(self):
+        node_list = ["A", "B"]
+        linked_list = TestLinkedList.generate_linked_list(node_list)
+        left, right = split_linked_list(linked_list)
+        left.to_string()
+        right.to_string()
+
+    def test_basic_linked_list_sort(self):
+        node_list = range(0, 20)
+        shuffle(node_list)
+        linked_list = TestLinkedList.generate_linked_list(node_list)
+        print linked_list.to_list()
+
+        merged_linked_list = merge_sort_linked_list(linked_list)
+        merged_list = merged_linked_list.to_list()
+        self.assertEqual(sorted(node_list), merged_list)
+
+
+
 
     @staticmethod
     def generate_linked_list(node_list):

@@ -6,7 +6,7 @@ class SinglyLinkedList:
     def __init__(self, head=None):
         """
         :param head:
-        :type head: LinkedListNode
+        :type head: LinkedListNode or NoneType
         """
         self._head = head
         self._size = 1 if head is not None else 0
@@ -16,6 +16,10 @@ class SinglyLinkedList:
         :param node: the linked list node to be set as the next for this current node.
         :type node: LinkedListNode
         """
+        if self._head is None:
+            self._size += 1
+            self._head = node
+            return
 
         current_ptr = self._head
         while current_ptr.next_node is not None:
@@ -225,6 +229,14 @@ class SinglyLinkedList:
             current = next_ptr
         self._head = prev
 
+    def to_list(self):
+        l = []
+        current = self._head
+        while current is not None:
+            l.append(current.identifier)
+            current = current.next_node
+        return l
+
     def to_string(self):
         """
         Prints a linked list
@@ -232,12 +244,15 @@ class SinglyLinkedList:
 
         current_ptr = self._head
 
+        if current_ptr is None:
+            print "(empty)"
+
         while current_ptr is not None:
             # Don't include an arrow for the last node.
             arrow = "" if current_ptr.next_node is None else " ->"
-            print current_ptr.identifier + arrow,
+            print str(current_ptr.identifier) + arrow,
             current_ptr = current_ptr.next_node
-        print " (size: {})".format(self._size)
+        print ""
 
     @property
     def head(self):
@@ -256,3 +271,132 @@ class SinglyLinkedList:
     @property
     def size(self):
         return self._size if self._head is not None else 0
+
+
+def get_middle_of_linked_list(linked_list):
+    """
+    Gets the middle of a linked list
+    :param linked_list:
+    :type linked_list: SinglyLinkedList
+    :return:
+    """
+    if linked_list.head is None:
+        return None
+
+    if linked_list.next_node is None:
+        return linked_list.head
+
+    slow = linked_list.head
+    fast = linked_list.head
+
+    while fast is not None:
+        if fast.next_node is not None:
+            slow = slow.next_node
+            fast = fast.next_node.next_node
+        else:
+            break
+
+    return slow
+
+
+def split_linked_list(linked_list):
+    """
+
+    :param linked_list:
+    :type linked_list: SinglyLinkedList
+    :return:
+    """
+    if linked_list.head is None:
+        return SinglyLinkedList(None), SinglyLinkedList(None)
+
+    # get mid, then split.
+    mid = get_middle_of_linked_list(linked_list)
+    start = linked_list.head
+
+    if start == mid:
+        return SinglyLinkedList(start), SinglyLinkedList(None)
+
+    while start is not None:
+        # Iterate through and find when the current pointer's next is the middle, then remove that reference.
+        if start.next_node == mid:
+            start.set_next_node(None)
+            break
+
+        start = start.next_node
+
+    return linked_list, SinglyLinkedList(mid)
+
+
+def merge_sort_linked_list(linked_list):
+
+    # Base case where the linked list is empty or is of size 1
+    if linked_list.head is None or linked_list.head.next_node is None:
+        return linked_list
+
+    left_linked_list, right_linked_list = split_linked_list(linked_list)
+
+    left = merge_sort_linked_list(left_linked_list)
+    right = merge_sort_linked_list(right_linked_list)
+
+    return combine_linked_list(left, right)
+
+
+def combine_linked_list(l1, l2):
+    """
+    Combines two linked lists
+
+    :param l1:
+    :type l1: SinglyLinkedList
+
+    :param l2:
+    :type l2: SinglyLinkedList
+
+    :return:
+    """
+
+    l1_head = l1.head
+    l2_head = l2.head
+
+    if l1_head is None:
+        return l2
+    if l2_head is None:
+        return l1
+
+    current_l1_ptr = l1_head
+    current_l2_ptr = l2_head
+
+    sorted_linked_list = SinglyLinkedList(None)
+
+    while current_l1_ptr is not None and current_l2_ptr is not None:
+
+        current_l1_val = current_l1_ptr.identifier
+        current_l2_val = current_l2_ptr.identifier
+
+        if current_l1_val <= current_l2_val:
+            sorted_linked_list.set_next_node(LinkedListNode(current_l1_val))
+            current_l1_ptr = current_l1_ptr.next_node
+        else:
+            sorted_linked_list.set_next_node(LinkedListNode(current_l2_val))
+            current_l2_ptr = current_l2_ptr.next_node
+
+    # add endings
+    while current_l1_ptr is not None:
+        current_l1_val = current_l1_ptr.identifier
+        sorted_linked_list.set_next_node(LinkedListNode(current_l1_val))
+        current_l1_ptr = current_l1_ptr.next_node
+
+    while current_l2_ptr is not None:
+        current_l2_val = current_l2_ptr.identifier
+        sorted_linked_list.set_next_node(LinkedListNode(current_l2_val))
+        current_l2_ptr = current_l2_ptr.next_node
+
+    return sorted_linked_list
+
+
+
+
+
+
+
+
+

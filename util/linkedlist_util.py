@@ -14,7 +14,7 @@ class LinkedListNode(Node):
     def set_next_node(self, node):
         """
         :param node: the linked list node to be set as the next for this current node.
-        :type node: LinkedListNode
+        :type node: LinkedListNode or NoneType
         """
         self._next_node = node
 
