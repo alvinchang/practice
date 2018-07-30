@@ -18,7 +18,6 @@ num_to_char_map = {
 }
 
 
-
 def find_combinations(digits_str, index=0, prefix_str=""):
 
     all_combinations = []
