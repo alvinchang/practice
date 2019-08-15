@@ -27,7 +27,7 @@ def quick_sort(arr, pivot_selection_type):
     upper_partition = [_x for _x in arr if _x > pivot_element]
 
     return quick_sort(lower_partition, pivot_selection_type) + middle_partition + \
-        quick_sort(upper_partition, pivot_selection_type)
+           quick_sort(upper_partition, pivot_selection_type)
 
 
 class PivotSelectionType(Enum):
@@ -78,4 +78,3 @@ if __name__ == "__main__":
         print 'pass'
     else:
         print 'fail'
-

@@ -60,6 +60,3 @@ class TestStacks(unittest.TestCase):
             pass
 
         self.assertTrue(stack.size() == 0)
-
-
-

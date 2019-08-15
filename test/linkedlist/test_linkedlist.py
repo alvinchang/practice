@@ -333,9 +333,6 @@ class TestLinkedList(unittest.TestCase):
         merged_list = merged_linked_list.to_list()
         self.assertEqual(sorted(node_list), merged_list)
 
-
-
-
     @staticmethod
     def generate_linked_list(node_list):
         """
@@ -357,6 +354,3 @@ class TestLinkedList(unittest.TestCase):
             linked_list.set_next_node(node)
 
         return linked_list
-
-
-

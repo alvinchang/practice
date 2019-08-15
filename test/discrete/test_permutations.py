@@ -22,4 +22,3 @@ class TestPermutations(unittest.TestCase):
         actual_perms = set(permute_string_method(empty_string))
         expected_perms = set("".join(_p) for _p in permutations(empty_string))
         self.assertTrue(actual_perms == expected_perms)
-

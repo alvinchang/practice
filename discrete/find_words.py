@@ -1,5 +1,3 @@
-
-
 def find_min_words(string, dictionary):
     """
     Finds the minimum number of substrings in a string (no whitespaces) where each substring is in the dictionary.
@@ -46,7 +44,7 @@ def find_min_words_helper(string, dictionary, lower, end, current_word_list):
             current_word_list_copy = current_word_list[:]
             current_word_list_copy.append(substring)
             result = find_min_words_helper(string, dictionary,
-                                           lower=_i+1,
+                                           lower=_i + 1,
                                            end=end,
                                            current_word_list=current_word_list_copy)
             results.extend(result)
@@ -67,17 +65,3 @@ if __name__ == "__main__":
     actual = find_min_words(example_string, example_dict_list)
     expected = ['hello', 'world', '!']
     assert actual == expected
-
-
-
-
-
-
-
-
-
-
-
-
-
-

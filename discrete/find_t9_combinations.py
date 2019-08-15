@@ -1,5 +1,3 @@
-
-
 """
 Find number of telephone combinations with a string of digits with the below map.
 
@@ -18,9 +16,7 @@ num_to_char_map = {
 }
 
 
-
 def find_combinations(digits_str, index=0, prefix_str=""):
-
     all_combinations = []
 
     if index >= len(digits_str):
@@ -32,7 +28,7 @@ def find_combinations(digits_str, index=0, prefix_str=""):
 
     if char_possibilities:
         for char in char_possibilities:
-            combinations = find_combinations(digits_str, index+1, prefix_str + char)
+            combinations = find_combinations(digits_str, index + 1, prefix_str + char)
             all_combinations.extend(combinations)
     else:
         # in the case where 1 is anywhere - doesnt map to any valid char for T9 mappings.
@@ -43,12 +39,4 @@ def find_combinations(digits_str, index=0, prefix_str=""):
 
 
 if __name__ == "__main__":
-
     print find_combinations('1232')
-
-
-
-
-
-
-

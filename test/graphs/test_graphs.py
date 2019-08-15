@@ -164,8 +164,3 @@ class TestGraph(unittest.TestCase):
         }
         graph = generate_graph(sample_adj_map, node_start_name="A")
         return graph
-
-
-
-
-

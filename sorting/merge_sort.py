@@ -1,6 +1,3 @@
-from random import randint
-
-
 def merge_sort(arr):
     """
     :param arr: the array to sort
@@ -63,6 +60,3 @@ def combine(left, right):
         result.extend(right)
 
     return result
-
-
-

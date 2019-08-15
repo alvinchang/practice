@@ -37,4 +37,3 @@ class TestSorting(unittest.TestCase):
         expected = sorted(random_list)
         actual = quick_sort(random_list, PivotSelectionType.MEDIAN)
         self.assertTrue(expected == actual)
-

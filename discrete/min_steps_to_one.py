@@ -1,4 +1,3 @@
-
 """
 
 On a positive integer, you can perform any one of the following 3 steps.
@@ -11,12 +10,13 @@ Given a positive integer n, find the minimum number of steps that takes n to 1
 
 """
 
+
 def min_steps_to_one_rec_memo(integer):
     memo = {}
     return min_steps_to_one_rec(integer, memo)
 
-def min_steps_to_one_rec(integer, memo):
 
+def min_steps_to_one_rec(integer, memo):
     if integer == 1:
         return 0
 
@@ -36,6 +36,7 @@ def min_steps_to_one_rec(integer, memo):
 
     return steps
 
+
 def min_steps_to_one_dp(integer):
     """
     Recurrence relation = F(n) = min ( f(n-1), f(n/2), f(n/3) ) + 1
@@ -43,19 +44,19 @@ def min_steps_to_one_dp(integer):
     :return:
     """
 
-    table = [-1 for _ in xrange(0, integer+1)]
+    table = [-1 for _ in xrange(0, integer + 1)]
     table[0] = 0
     table[1] = 1
     table[2] = 1
     table[3] = 1
 
-    for i in xrange(4, integer+1):
+    for i in xrange(4, integer + 1):
 
-        min_steps = table[i-1]
+        min_steps = table[i - 1]
         if i % 2 == 0:
-            min_steps = min(table[i/2], min_steps)
+            min_steps = min(table[i / 2], min_steps)
         if i % 3 == 0:
-            min_steps = min(table[i/3], min_steps)
+            min_steps = min(table[i / 3], min_steps)
         table[i] = min_steps + 1
 
     return table[integer]

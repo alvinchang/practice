@@ -2,7 +2,6 @@ from abc import ABCMeta, abstractmethod
 
 
 class QueueInterface(object):
-
     """
     Provides a basic interface that Queues should implement with First-in, First-Out behavior.
     """
@@ -48,6 +47,3 @@ class QueueInterface(object):
 
 class EmptyQueueError(ValueError):
     pass
-
-
-

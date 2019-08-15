@@ -5,6 +5,7 @@ class ListStack(StackInterface):
     """
     Here we use a python list to back the stack, appending and popping from the end, we could also use a linked list.
     """
+
     def __init__(self):
         self._stack = []
 
@@ -23,4 +24,3 @@ class ListStack(StackInterface):
         if not self._stack:
             raise EmptyStackError
         return self._stack[-1]
-

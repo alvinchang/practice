@@ -65,5 +65,3 @@ class TestMaps(unittest.TestCase):
 
         actual = test_map.get("a")
         self.assertTrue(actual is None)
-
-

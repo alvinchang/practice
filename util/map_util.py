@@ -2,7 +2,6 @@ from abc import ABCMeta, abstractmethod
 
 
 class MapInterface(object):
-
     __metaclass__ = ABCMeta
 
     @abstractmethod
@@ -51,7 +50,6 @@ class ValueMissingError(ValueError):
 
 
 class Map(MapInterface):
-
     __metaclass__ = ABCMeta
 
     def __init__(self, chain_type, size):
@@ -82,5 +80,3 @@ class Map(MapInterface):
     @property
     def chain_map(self):
         return self._chain_map
-
-

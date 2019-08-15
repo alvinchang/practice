@@ -67,6 +67,3 @@ class TestQueues(unittest.TestCase):
             pass
 
         self.assertTrue(queue.size() == 0)
-
-
-

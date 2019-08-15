@@ -328,7 +328,6 @@ def split_linked_list(linked_list):
 
 
 def merge_sort_linked_list(linked_list):
-
     # Base case where the linked list is empty or is of size 1
     if linked_list.head is None or linked_list.head.next_node is None:
         return linked_list
@@ -391,12 +390,3 @@ def combine_linked_list(l1, l2):
         current_l2_ptr = current_l2_ptr.next_node
 
     return sorted_linked_list
-
-
-
-
-
-
-
-
-

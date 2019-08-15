@@ -1,5 +1,3 @@
-
-
 def binary_search_recursive(arr, value):
     """
     Performs binary search in a recursive fashion. Returns None if it did not find anything.
@@ -16,7 +14,7 @@ def binary_search_recursive(arr, value):
     if not arr:
         return None
 
-    return binary_search_recursive_helper(arr, value, low=0, high=len(arr)-1)
+    return binary_search_recursive_helper(arr, value, low=0, high=len(arr) - 1)
 
 
 def binary_search_recursive_helper(arr, value, low, high):
@@ -48,10 +46,10 @@ def binary_search_recursive_helper(arr, value, low, high):
         return None
     elif value < midpoint_val:
         # Value is less than the midpoint so look at the left partition
-        return binary_search_recursive_helper(arr, value, low=low, high=midpoint_idx-1)
+        return binary_search_recursive_helper(arr, value, low=low, high=midpoint_idx - 1)
     else:
         # Value is greater than the midpoint so look at the right partition.
-        return binary_search_recursive_helper(arr, value, low=midpoint_idx+1, high=high)
+        return binary_search_recursive_helper(arr, value, low=midpoint_idx + 1, high=high)
 
 
 def binary_search_iterative(arr, value):

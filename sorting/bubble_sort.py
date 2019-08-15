@@ -34,7 +34,7 @@ def check_sorted(arr):
 
     for _i in xrange(1, len(arr)):
         curr = arr[_i]
-        prev = arr[_i-1]
+        prev = arr[_i - 1]
 
         if curr < prev:
             return False
@@ -50,5 +50,3 @@ if __name__ == "__main__":
         print 'pass'
     else:
         print 'fail'
-
-

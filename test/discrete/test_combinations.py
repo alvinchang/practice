@@ -1,6 +1,5 @@
-import unittest
-
 import itertools
+import unittest
 
 from discrete.combination import generate_combinations
 

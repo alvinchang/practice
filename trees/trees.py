@@ -1,7 +1,3 @@
-import Queue
-from collections import deque
-
-from graphs.traversals import process_node
 from queues.queues import LinkedListQueue
 from util.tree_util import BinaryTreeNode
 
@@ -27,7 +23,7 @@ class BinaryTree:
         :return:
         """
         id_list.sort()
-        return BinaryTree(cls._create_bst(id_list, 0, len(id_list)-1))
+        return BinaryTree(cls._create_bst(id_list, 0, len(id_list) - 1))
 
     @classmethod
     def _create_bst(cls, id_list, lower, upper):
@@ -39,8 +35,8 @@ class BinaryTree:
         midpoint_val = id_list[midpoint_idx]
 
         node = BinaryTreeNode(midpoint_val)
-        left = cls._create_bst(id_list, lower=lower, upper=midpoint_idx-1)
-        right = cls._create_bst(id_list, lower=midpoint_idx+1, upper=upper)
+        left = cls._create_bst(id_list, lower=lower, upper=midpoint_idx - 1)
+        right = cls._create_bst(id_list, lower=midpoint_idx + 1, upper=upper)
         node.set_left(left)
         node.set_right(right)
 
@@ -247,4 +243,3 @@ class SuffixTree:
 
     def __init__(self):
         pass
-

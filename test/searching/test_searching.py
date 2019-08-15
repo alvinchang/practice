@@ -81,4 +81,3 @@ class TestSearching(unittest.TestCase):
             if _val == value:
                 res.append(_i)
         return res
-

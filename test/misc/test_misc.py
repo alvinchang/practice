@@ -30,7 +30,6 @@ class TestMatrixSpiral(unittest.TestCase):
         self.assertEqual(spiral_path, expected_path)
 
     def test_basic_matrix_spiral_3x3(self):
-
         matrix = [
             [1, 2, 3],
             [4, 5, 6],
@@ -42,11 +41,10 @@ class TestMatrixSpiral(unittest.TestCase):
         self.assertEqual(spiral_path, expected_path)
 
     def test_basic_matrix_spiral_4x4(self):
-
         matrix = [
-            [1,  2,  3,  4],
-            [5,  6,  7,  8],
-            [9,  10, 11, 12],
+            [1, 2, 3, 4],
+            [5, 6, 7, 8],
+            [9, 10, 11, 12],
             [13, 14, 15, 16]
         ]
 
@@ -55,7 +53,6 @@ class TestMatrixSpiral(unittest.TestCase):
         self.assertEqual(spiral_path, expected_path)
 
     def test_basic_matrix_spiral_2x4(self):
-
         matrix = [
             [1, 2, 3, 4],
             [5, 6, 7, 8]
@@ -66,7 +63,6 @@ class TestMatrixSpiral(unittest.TestCase):
         self.assertEqual(spiral_path, expected_path)
 
     def test_basic_matrix_spiral_4x2(self):
-
         matrix = [
             [1, 2],
             [3, 4],

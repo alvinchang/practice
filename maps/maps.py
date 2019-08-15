@@ -94,6 +94,3 @@ class LinkedListMap(Map):
             linked_list.remove_node_with_name(key)
         except LinkedListValueMissingError:
             raise ValueMissingError()
-
-
-

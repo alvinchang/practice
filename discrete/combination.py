@@ -1,5 +1,3 @@
-
-
 def generate_combinations(input_list):
     """
     Generates combinations given an input list.
@@ -41,4 +39,3 @@ def get_combination_from_num(input_list, num):
         item_idx += 1
         num = num >> 1
     return tuple(result)
-

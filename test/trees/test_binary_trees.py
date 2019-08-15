@@ -1,8 +1,8 @@
 import unittest
 from random import shuffle
 
-from util.tree_util import BinaryTreeNode
 from trees.trees import BinaryTree, BinaryTreeReaderWriter
+from util.tree_util import BinaryTreeNode
 
 
 class TestBinaryTree(unittest.TestCase):
@@ -188,7 +188,6 @@ class TestBinaryTreesReaderWriter(unittest.TestCase):
         level_order_path = binary_tree.level_order_traversal_path()
         print level_order_path
 
-
     def test_basic_binary_tree_de_and_serialization_1(self):
         binary_tree = TestBinaryTree.create_basic_binary_tree()
         in_order, pre_order = BinaryTreeReaderWriter.serialize_1(binary_tree)
@@ -197,5 +196,5 @@ class TestBinaryTreesReaderWriter(unittest.TestCase):
         new_binary_tree = BinaryTreeReaderWriter.deserialize_1(in_order, pre_order)
         print "in_order={}".format(new_binary_tree.in_order_traversal_path())
         print "pre_order={}".format(new_binary_tree.pre_order_traversal_path())
-        #self.assertTrue(binary_tree.is_equal(new_binary_tree))
-        #self.assertTrue(new_binary_tree.is_equal(binary_tree))
+        # self.assertTrue(binary_tree.is_equal(new_binary_tree))
+        # self.assertTrue(new_binary_tree.is_equal(binary_tree))

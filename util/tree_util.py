@@ -2,7 +2,6 @@ from util.node_util import Node
 
 
 class BinaryTreeNode(Node):
-
     NONE_ID = "#"
 
     def __init__(self, identifier):
@@ -48,15 +47,3 @@ class NaryTreeNode(Node):
     @property
     def children(self):
         return self._children
-
-
-
-
-
-
-
-
-
-
-
-

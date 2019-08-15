@@ -2,7 +2,6 @@ from abc import ABCMeta, abstractmethod
 
 
 class StackInterface(object):
-
     """
     Provides a basic interface that stacks should implement with Last-in, First-Out behavior.
     """
@@ -48,5 +47,3 @@ class StackInterface(object):
 
 class EmptyStackError(ValueError):
     pass
-
-

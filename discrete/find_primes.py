@@ -21,7 +21,7 @@ def find_primes_naive(lower, upper):
     :rtype: List[int]
     """
     results = []
-    for potential_prime in xrange(max(2, lower), upper+1):
+    for potential_prime in xrange(max(2, lower), upper + 1):
 
         is_prime = True
         for potential_factor in xrange(2, int(floor(sqrt(potential_prime))) + 1):
@@ -58,10 +58,10 @@ def find_primes_sieve(lower, upper):
     # used to more easily index into the flags.
     temp = [False for _ in xrange(0, max(2, lower))]
 
-    flags = temp + [True for _ in xrange(max(2, lower), upper+1)]
+    flags = temp + [True for _ in xrange(max(2, lower), upper + 1)]
 
     result = []
-    for _i in xrange(max(2, lower), upper+1):
+    for _i in xrange(max(2, lower), upper + 1):
         multiple = 2
         multiple_of_i = _i * multiple
         while multiple_of_i <= upper:
@@ -82,5 +82,3 @@ if __name__ == "__main__":
     naive = find_primes_naive(lower, 100)
     sieve = find_primes_sieve(1, 100)
     assert naive == sieve
-
-
