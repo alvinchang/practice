@@ -161,3 +161,42 @@ def contains_path(graph_start_node, start_node_id, end_node_id):
     return valid_paths
 
 
+def shortest_path_helper(graph_start_node, remaining_path_ids, current_node, visited_map):
+    """
+
+    :param graph_start_node:
+    :param remaining_path_ids:
+    :param visited_map:
+    :return:
+    """
+
+    process_node(visited_map, current_node)
+
+    visited_map[current_node.identifier] = NodeState.VISITED
+
+
+def shortest_path(graph_start_node, path_id_list):
+    """
+    Finds the shortest path given a graph start node, and a list of graph ids that must be included within the path.
+
+    :param graph_start_node:
+    :type graph_start_node: GraphNode
+    :param path_id_list:
+    :return:
+    """
+
+    """
+
+    Sample adjacency map
+    
+            A
+           / \
+          B   C
+              /\
+             D  E
+            / \ /
+            Y  X
+             \/
+             Z
+
+    """
